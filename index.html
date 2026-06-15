@@ -3,31 +3,331 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <title>Zelvra | Financial Filings To Research Briefs</title>
     <meta
       name="description"
       content="Zelvra turns financial filings, earnings reports, and transcripts into sharp, source-backed research briefs for finance creators, analysts, and newsletter operators."
     >
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="Zelvra">
+    <meta name="theme-color" content="#05070d">
+    <link rel="canonical" href="https://zelvra.tech/">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Zelvra">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:url" content="https://zelvra.tech/">
     <meta property="og:title" content="Zelvra | Financial Filings To Research Briefs">
     <meta
       property="og:description"
       content="Premium research-brief support for finance creators and operators who need clear, publish-ready insight from filings and earnings materials."
     >
-    <meta property="og:type" content="website">
-    <meta name="theme-color" content="#05070d">
+    <meta property="og:image" content="https://zelvra.tech/assets/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Zelvra — financial filings turned into sharp research briefs.">
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Zelvra | Financial Filings To Research Briefs">
+    <meta
+      name="twitter:description"
+      content="Premium research-brief support for finance creators and operators who need clear, publish-ready insight from filings and earnings materials."
+    >
+    <meta name="twitter:image" content="https://zelvra.tech/assets/og-image.png">
+    <meta name="twitter:image:alt" content="Zelvra — financial filings turned into sharp research briefs.">
+
     <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="./assets/favicon.svg">
     <link rel="stylesheet" href="styles.css">
-    <script type="importmap">
+
+    <script type="application/ld+json">
       {
-        "imports": {
-          "react": "https://esm.sh/react@18.3.1",
-          "react-dom/client": "https://esm.sh/react-dom@18.3.1/client"
-        }
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Zelvra",
+        "url": "https://zelvra.tech/",
+        "logo": "https://zelvra.tech/assets/zelvra-mark.svg",
+        "image": "https://zelvra.tech/assets/og-image.png",
+        "email": "hello@zelvra.tech",
+        "description": "Zelvra turns financial filings, earnings reports, and transcripts into sharp, source-backed research briefs for finance creators, analysts, and newsletter operators.",
+        "slogan": "Financial filings turned into sharp, publish-ready research briefs."
       }
     </script>
   </head>
   <body>
-    <div id="root"></div>
-    <script type="module" src="./src/main.js"></script>
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="Zelvra home">
+        <img class="brand-mark" src="./assets/zelvra-mark.svg" alt="" aria-hidden="true">
+        <span>Zelvra</span>
+      </a>
+      <button
+        class="nav-toggle"
+        type="button"
+        aria-expanded="false"
+        aria-controls="site-nav"
+      >
+        <span class="sr-only">Toggle navigation</span>
+        <span></span>
+        <span></span>
+      </button>
+      <nav class="site-nav" id="site-nav" aria-label="Primary navigation">
+        <a href="#what-we-do">What we do</a>
+        <a href="#process">Process</a>
+        <a href="#sample">Sample</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <a class="header-cta" href="mailto:hello@zelvra.tech?subject=Request%20a%20sample%20brief">Request a sample brief</a>
+    </header>
+
+    <main id="top">
+      <section class="hero section-shell" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <p class="eyebrow">Pre-launch research brief service</p>
+          <h1 id="hero-title">Financial filings turned into sharp, publish-ready research briefs.</h1>
+          <p class="hero-subhead">
+            Zelvra helps finance creators and operators turn earnings reports, 10-Ks, and transcripts into
+            clear content fuel without drowning in filings.
+          </p>
+          <div class="hero-actions" aria-label="Primary actions">
+            <a class="button button-primary" href="mailto:hello@zelvra.tech?subject=Request%20a%20sample%20brief">Request a sample brief</a>
+            <a class="button button-secondary" href="#process">See how it works</a>
+          </div>
+          <p class="credibility-note">Built for speed, clarity, and source-backed research.</p>
+        </div>
+
+        <div class="hero-visual" aria-label="Research brief preview">
+          <div class="market-grid" aria-hidden="true"></div>
+          <article class="brief-panel">
+            <div class="panel-topline">
+              <span>Brief queue</span>
+              <span>Source-backed</span>
+            </div>
+            <div class="ticker-row">
+              <span class="ticker-pill">10-K</span>
+              <span class="ticker-pill">Q4 call</span>
+              <span class="ticker-pill">Transcript</span>
+            </div>
+            <div class="signal-chart" aria-hidden="true">
+              <span style="height: 36%"></span>
+              <span style="height: 62%"></span>
+              <span style="height: 48%"></span>
+              <span style="height: 76%"></span>
+              <span style="height: 54%"></span>
+              <span style="height: 70%"></span>
+            </div>
+            <div class="brief-lines">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+            <div class="source-strip">
+              <span>Revenue</span>
+              <span>Margins</span>
+              <span>Guidance</span>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="problem section-shell" id="what-we-do" aria-labelledby="problem-title">
+        <div class="section-kicker">The problem</div>
+        <div class="split">
+          <h2 id="problem-title">The signal is buried in long filings and noisy calls.</h2>
+          <div class="body-stack">
+            <p>
+              Financial filings are dense, earnings calls move quickly, and the useful story is rarely sitting
+              in one paragraph. Creators and operators need the key numbers, narrative shifts, and risks fast
+              enough to turn them into clean output.
+            </p>
+            <p>
+              Zelvra is built around the practical middle ground: source-backed research that is concise enough
+              to use and careful enough to trust.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="solution section-shell" aria-labelledby="solution-title">
+        <div class="section-heading">
+          <p class="section-kicker">What Zelvra delivers</p>
+          <h2 id="solution-title">Briefs that turn source material into usable finance content.</h2>
+        </div>
+        <div class="card-grid">
+          <article class="feature-card">
+            <span class="card-index">01</span>
+            <h3>Filing summaries</h3>
+            <p>Condensed reads of 10-Ks, 10-Qs, investor decks, and annual reports with the numbers that shape the story.</p>
+          </article>
+          <article class="feature-card">
+            <span class="card-index">02</span>
+            <h3>Call takeaways</h3>
+            <p>Management commentary, guidance language, segment updates, and repeated themes separated from the noise.</p>
+          </article>
+          <article class="feature-card">
+            <span class="card-index">03</span>
+            <h3>Content angles</h3>
+            <p>Hooks, narrative framing, source notes, and risk flags that can become a newsletter, post, memo, or script.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="process section-shell" id="process" aria-labelledby="process-title">
+        <div class="section-heading">
+          <p class="section-kicker">Process</p>
+          <h2 id="process-title">A simple path from source material to usable brief.</h2>
+        </div>
+        <div class="steps" aria-label="Zelvra process">
+          <article class="step">
+            <span>1</span>
+            <h3>Send the company/report</h3>
+            <p>Share a ticker, filing, earnings report, transcript, deck, or source link you want turned into a brief.</p>
+          </article>
+          <article class="step">
+            <span>2</span>
+            <h3>Zelvra extracts the numbers and narrative</h3>
+            <p>The brief pulls out source-backed figures, management language, business drivers, and the main tension.</p>
+          </article>
+          <article class="step">
+            <span>3</span>
+            <h3>Receive a concise brief ready to turn into content</h3>
+            <p>Use the output as a starting point for newsletters, posts, scripts, memos, or internal research notes.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="sample section-shell" id="sample" aria-labelledby="sample-title">
+        <div class="sample-copy">
+          <p class="section-kicker">Sample preview</p>
+          <h2 id="sample-title">A source-backed brief structure without invented company claims.</h2>
+          <p>
+            This preview shows how a Zelvra brief is organized. It is illustrative only, not a recommendation,
+            rating, or current company analysis.
+          </p>
+          <div class="sample-tabs" role="tablist" aria-label="Sample brief source type">
+            <button class="sample-tab active" type="button" role="tab" aria-selected="true" data-sample="earnings">Earnings call</button>
+            <button class="sample-tab" type="button" role="tab" aria-selected="false" data-sample="filing">10-K filing</button>
+            <button class="sample-tab" type="button" role="tab" aria-selected="false" data-sample="transcript">Transcript</button>
+          </div>
+        </div>
+
+        <article class="sample-card" aria-label="Sample brief structure">
+          <div class="sample-card-header">
+            <div>
+              <p class="sample-label">Sample structure</p>
+              <h3>Public Company Brief Framework</h3>
+            </div>
+            <span>Illustrative only</span>
+          </div>
+          <div class="sample-meta">
+            <div>
+              <span>Source packet</span>
+              <strong data-sample-field="source">Q4 earnings release + call transcript</strong>
+            </div>
+            <div>
+              <span>Brief focus</span>
+              <strong data-sample-field="focus">Quarterly narrative, guidance language, and source-backed content angles.</strong>
+            </div>
+          </div>
+          <p class="sample-disclaimer">
+            A real sample brief would insert the source-checked values, quotes, and filing references from the
+            material you provide.
+          </p>
+          <div class="sample-section">
+            <h4>Hook</h4>
+            <p data-sample-field="hook">
+              Lead with the gap between reported momentum and management's forward-looking tone, then show which
+              numbers support that tension.
+            </p>
+          </div>
+          <div class="sample-section">
+            <h4>5 key numbers</h4>
+            <ul class="metric-list" data-sample-field="metrics">
+              <li><span>Reported revenue</span><strong>Total, YoY change, and the driver management emphasized.</strong></li>
+              <li><span>Segment performance</span><strong>Which segment carried the quarter and which one dragged.</strong></li>
+              <li><span>Margin direction</span><strong>Gross or operating margin trend plus the stated explanation.</strong></li>
+              <li><span>Free cash flow</span><strong>Cash conversion and any timing items called out in the release.</strong></li>
+              <li><span>Guidance language</span><strong>Range, revision, and tone compared with prior commentary.</strong></li>
+            </ul>
+          </div>
+          <div class="case-grid">
+            <div class="sample-section">
+              <h4>Upside lens</h4>
+              <p data-sample-field="upside">
+                If growth durability, pricing power, or segment mix is visible in the source, frame it as the
+                constructive read.
+              </p>
+            </div>
+            <div class="sample-section">
+              <h4>Risk lens</h4>
+              <p data-sample-field="risk">
+                If margin pressure, softer demand, or cautious guidance is visible, make that the risk lens.
+              </p>
+            </div>
+          </div>
+          <div class="sample-section content-angle">
+            <h4>Content angle</h4>
+            <p data-sample-field="angle">
+              Turn the quarter into a creator-ready post: what changed, why it matters, and what to watch next.
+            </p>
+          </div>
+        </article>
+      </section>
+
+      <section class="offer section-shell" id="contact" aria-labelledby="offer-title">
+        <div class="offer-panel">
+          <p class="section-kicker">Pre-launch</p>
+          <h2 id="offer-title">Request one sample brief from a filing, report, or transcript.</h2>
+          <p>
+            Send the source material and tell Zelvra how you plan to use the output. The sample will show the
+            structure, tone, and level of source-backed detail before broader availability opens.
+          </p>
+          <ul class="offer-list" aria-label="What a sample brief includes">
+            <li>A concise brief built from the filing, report, transcript, or deck you send.</li>
+            <li>A hook, key numbers, narrative takeaways, risk flags, and content angles.</li>
+            <li>Source-aware language you can adapt into a post, newsletter, memo, or script.</li>
+            <li>A clear label that the output is research content, not financial advice.</li>
+          </ul>
+          <div class="offer-actions">
+            <a
+              class="button button-primary"
+              id="open-email"
+              href="mailto:hello@zelvra.tech?subject=Request%20a%20sample%20brief&body=Hi%20Zelvra%2C%0A%0AI'd%20like%20to%20request%20a%20sample%20brief.%0A%0ACompany%20or%20ticker%3A%0ASource%20material%20or%20link%3A%0AIntended%20use%3A%0A%0AThanks%2C"
+            >Open email app</a>
+            <div class="email-row">
+              <input
+                aria-label="Contact email address"
+                class="email-input"
+                id="contact-email"
+                readonly
+                value="hello@zelvra.tech"
+              >
+              <button class="copy-button" type="button" id="copy-email">Copy email</button>
+            </div>
+          </div>
+          <p class="contact-status" id="contact-status" role="status" aria-live="polite">
+            Open your email app, or copy the address directly.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div>
+        <a class="brand footer-brand" href="#top" aria-label="Zelvra home">
+          <img class="brand-mark" src="./assets/zelvra-mark.svg" alt="" aria-hidden="true">
+          <span>Zelvra</span>
+        </a>
+        <p>Turning financial filings into sharp research briefs.</p>
+      </div>
+      <div class="footer-meta">
+        <a href="#contact">hello@zelvra.tech</a>
+        <p>Research content only. Not financial advice.</p>
+      </div>
+    </footer>
+
+    <script src="./app.js" defer></script>
   </body>
 </html>
