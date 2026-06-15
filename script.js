@@ -1,11 +1,12 @@
-// Zelvra landing page interactions — vanilla JS, no framework, no build step.
+// Zelvra static site interactions — vanilla JS, no framework, no build step.
+// Safe to load on every page: each block no-ops if its elements are absent.
 (function () {
   "use strict";
 
   var EMAIL = "hello@zelvra.tech";
 
   /* ---------------------------------------------------------------------- *
-   * Mobile navigation toggle
+   * Mobile navigation toggle (keyboard accessible)
    * ---------------------------------------------------------------------- */
   var header = document.querySelector(".site-header");
   var navToggle = document.querySelector(".nav-toggle");
@@ -25,10 +26,18 @@
     nav.addEventListener("click", function (event) {
       if (event.target.closest("a")) setNav(false);
     });
+
+    // Escape closes the menu and returns focus to the toggle.
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Escape" && header.classList.contains("nav-open")) {
+        setNav(false);
+        navToggle.focus();
+      }
+    });
   }
 
   /* ---------------------------------------------------------------------- *
-   * Interactive sample brief tabs
+   * Interactive sample brief tabs (home page only)
    * ---------------------------------------------------------------------- */
   var samples = {
     earnings: {
@@ -46,7 +55,7 @@
       upside:
         "If growth durability, pricing power, or segment mix is visible in the source, frame it as the constructive read.",
       risk:
-        "If margin pressure, softer demand, or cautious guidance is visible, make that the risk lens.",
+        "If margin pressure, softer demand, or cautious guidance is visible, make that the cautionary read.",
       angle:
         "Turn the quarter into a creator-ready post: what changed, why it matters, and what to watch next.",
     },
@@ -84,7 +93,7 @@
       upside:
         "If demand, pricing, or spending discipline sounds stronger, capture the precise language that supports it.",
       risk:
-        "If management hedges, softens demand language, or calls out cost pressure, mark it as the risk to watch.",
+        "If management hedges, softens demand language, or calls out cost pressure, mark it as the read to watch.",
       angle:
         "Compare what management emphasized with what the numbers showed, then turn the gap into a clean content hook.",
     },
@@ -159,10 +168,12 @@
   function flashCopied() {
     if (!copyButton) return;
     copyButton.textContent = "Copied";
+    copyButton.classList.add("is-copied");
     setStatus("Copied " + EMAIL);
     window.clearTimeout(copyResetTimer);
     copyResetTimer = window.setTimeout(function () {
       copyButton.textContent = "Copy email";
+      copyButton.classList.remove("is-copied");
     }, 1800);
   }
 
@@ -173,6 +184,11 @@
     } catch (error) {
       return false;
     }
+  }
+
+  function manualFallback() {
+    selectEmailField();
+    setStatus("Email selected. Press Ctrl+C to copy " + EMAIL + ".");
   }
 
   if (emailInput) {
@@ -188,22 +204,14 @@
       // then to selecting the field so the user can copy manually.
       if (navigator.clipboard && navigator.clipboard.writeText && window.isSecureContext) {
         navigator.clipboard.writeText(EMAIL).then(flashCopied, function () {
-          if (legacyCopy()) {
-            flashCopied();
-          } else {
-            selectEmailField();
-            setStatus("Email selected. Press Ctrl+C to copy " + EMAIL + ".");
-          }
+          if (legacyCopy()) flashCopied();
+          else manualFallback();
         });
         return;
       }
 
-      if (legacyCopy()) {
-        flashCopied();
-      } else {
-        selectEmailField();
-        setStatus("Email selected. Press Ctrl+C to copy " + EMAIL + ".");
-      }
+      if (legacyCopy()) flashCopied();
+      else manualFallback();
     });
   }
 

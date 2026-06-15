@@ -7,7 +7,7 @@
     <title>Zelvra | Financial Filings To Research Briefs</title>
     <meta
       name="description"
-      content="Zelvra turns financial filings, earnings reports, and transcripts into sharp, source-backed research briefs for finance creators, analysts, and newsletter operators."
+      content="Zelvra turns financial filings, earnings reports, 10-Ks, and transcripts into sharp, source-backed research briefs for finance creators."
     >
     <meta name="robots" content="index, follow">
     <meta name="author" content="Zelvra">
@@ -41,6 +41,7 @@
 
     <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="./assets/favicon.svg">
+    <link rel="manifest" href="./site.webmanifest">
     <link rel="stylesheet" href="styles.css">
 
     <script type="application/ld+json">
@@ -52,7 +53,7 @@
         "logo": "https://zelvra.tech/assets/zelvra-mark.svg",
         "image": "https://zelvra.tech/assets/og-image.png",
         "email": "hello@zelvra.tech",
-        "description": "Zelvra turns financial filings, earnings reports, and transcripts into sharp, source-backed research briefs for finance creators, analysts, and newsletter operators.",
+        "description": "Zelvra turns financial filings, earnings reports, 10-Ks, and transcripts into sharp, source-backed research briefs for finance creators.",
         "slogan": "Financial filings turned into sharp, publish-ready research briefs."
       }
     </script>
@@ -211,6 +212,7 @@
             <button class="sample-tab" type="button" role="tab" aria-selected="false" data-sample="filing">10-K filing</button>
             <button class="sample-tab" type="button" role="tab" aria-selected="false" data-sample="transcript">Transcript</button>
           </div>
+          <a class="sample-fulllink" href="./sample.html">View the full sample brief structure &rarr;</a>
         </div>
 
         <article class="sample-card" aria-label="Sample brief structure">
@@ -254,23 +256,30 @@
           </div>
           <div class="case-grid">
             <div class="sample-section">
-              <h4>Upside lens</h4>
+              <h4>Bull lens</h4>
               <p data-sample-field="upside">
                 If growth durability, pricing power, or segment mix is visible in the source, frame it as the
                 constructive read.
               </p>
             </div>
             <div class="sample-section">
-              <h4>Risk lens</h4>
+              <h4>Bear lens</h4>
               <p data-sample-field="risk">
-                If margin pressure, softer demand, or cautious guidance is visible, make that the risk lens.
+                If margin pressure, softer demand, or cautious guidance is visible, make that the cautionary read.
               </p>
             </div>
           </div>
-          <div class="sample-section content-angle">
+          <div class="sample-section">
             <h4>Content angle</h4>
             <p data-sample-field="angle">
               Turn the quarter into a creator-ready post: what changed, why it matters, and what to watch next.
+            </p>
+          </div>
+          <div class="sample-section content-angle">
+            <h4>QA &amp; disclaimer note</h4>
+            <p>
+              Every figure is checked against the cited source before delivery. Illustrative structure only.
+              Not a company recommendation, rating, or financial advice.
             </p>
           </div>
         </article>
@@ -290,6 +299,16 @@
             <li>Source-aware language you can adapt into a post, newsletter, memo, or script.</li>
             <li>A clear label that the output is research content, not financial advice.</li>
           </ul>
+          <div class="request-template">
+            <h3>What to include in your email</h3>
+            <ul class="request-list" aria-label="Details to include when requesting a brief">
+              <li><span>Company / ticker</span> The public company or symbol you want covered.</li>
+              <li><span>Source link</span> The filing, earnings report, or transcript (URL or attachment).</li>
+              <li><span>Desired output</span> Newsletter section, X thread, or full research brief.</li>
+              <li><span>Deadline</span> When you need the brief back.</li>
+              <li><span>Your channel</span> The publication, newsletter, or handle it is for.</li>
+            </ul>
+          </div>
           <div class="offer-actions">
             <a
               class="button button-primary"
@@ -328,6 +347,6 @@
       </div>
     </footer>
 
-    <script src="./app.js" defer></script>
+    <script src="./script.js" defer></script>
   </body>
 </html>
