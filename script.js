@@ -316,7 +316,15 @@
       var posts = Array.prototype.slice.call(container.querySelectorAll(".tweet p"));
       return posts
         .map(function (p) {
-          return (p.textContent || "").trim();
+          // Normalise each line so HTML source indentation never leaks into
+          // the copied text, while preserving intentional line breaks.
+          return (p.textContent || "")
+            .split("\n")
+            .map(function (line) {
+              return line.trim();
+            })
+            .filter(Boolean)
+            .join("\n");
         })
         .filter(Boolean)
         .join("\n\n");

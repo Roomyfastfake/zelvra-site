@@ -1608,6 +1608,204 @@ h3 {
   color: var(--muted-strong);
 }
 
+/* Summary callout */
+.summary-card {
+  padding: 22px 24px;
+  background:
+    linear-gradient(135deg, rgba(85, 184, 255, 0.1), transparent 52%),
+    rgba(4, 8, 15, 0.7);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--accent-strong);
+  border-radius: var(--radius);
+}
+
+.summary-card p {
+  margin: 0;
+  color: var(--muted-strong);
+  font-size: 1.04rem;
+  line-height: 1.65;
+}
+
+.summary-card strong {
+  color: var(--text);
+}
+
+/* Reusable info block (number detail, what-changed) */
+.num-detail-stack,
+.changed-stack {
+  display: grid;
+  gap: 12px;
+  margin-top: 22px;
+}
+
+.info-block {
+  padding: 18px 20px;
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  transition: border-color 180ms ease, background 180ms ease;
+}
+
+.info-block:hover {
+  border-color: var(--line-strong);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.info-block h3 {
+  margin-bottom: 8px;
+  font-size: 1.05rem;
+}
+
+.info-block p {
+  margin: 0 0 8px;
+  color: var(--muted-strong);
+}
+
+.info-block p:last-child {
+  margin-bottom: 0;
+}
+
+.source-cite {
+  color: var(--muted) !important;
+  font-size: 0.82rem;
+}
+
+/* Creator hooks */
+.hook-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.hook-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 20px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.025)),
+    rgba(4, 8, 15, 0.7);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  transition: transform 180ms ease, border-color 180ms ease;
+}
+
+.hook-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--line-strong);
+}
+
+.hook-tag {
+  color: var(--accent-strong);
+  font-size: 0.76rem;
+  font-weight: 780;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.hook-card p {
+  margin: 0;
+  color: var(--muted-strong);
+  font-size: 0.98rem;
+  line-height: 1.55;
+}
+
+/* Bull / bear bullet lists */
+.lens-list {
+  display: grid;
+  gap: 12px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.lens-list li {
+  position: relative;
+  padding-left: 18px;
+  color: var(--muted-strong);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.lens-list li::before {
+  position: absolute;
+  top: 0.62em;
+  left: 0;
+  width: 6px;
+  height: 6px;
+  content: "";
+  background: var(--muted);
+  border-radius: 999px;
+}
+
+.lens-bull .lens-list li::before {
+  background: var(--success);
+}
+
+.lens-bear .lens-list li::before {
+  background: #f0a48b;
+}
+
+.lens-list strong {
+  color: var(--text);
+}
+
+/* What everyone might miss */
+.miss-card {
+  margin-top: 14px;
+  padding: 24px;
+  background:
+    linear-gradient(135deg, rgba(121, 224, 194, 0.1), transparent 55%),
+    rgba(4, 8, 15, 0.7);
+  border: 1px solid rgba(121, 224, 194, 0.24);
+  border-radius: var(--radius);
+}
+
+.miss-tag {
+  margin: 0 0 8px;
+  color: var(--success);
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.miss-card h3 {
+  margin-bottom: 12px;
+  font-size: 1.2rem;
+}
+
+.miss-card p {
+  margin: 0 0 12px;
+  color: var(--muted-strong);
+}
+
+.miss-card p:last-child {
+  margin-bottom: 0;
+}
+
+/* Multi-line tweets: preserve intentional line breaks */
+.tweet p {
+  white-space: pre-line;
+}
+
+/* Newsletter sub-headings */
+.newsletter-card h4 {
+  margin: 18px 0 8px;
+  color: var(--text);
+  font-size: 1rem;
+}
+
+.source-ref a {
+  color: var(--accent-strong);
+  border-bottom: 1px solid transparent;
+  transition: border-color 160ms ease;
+}
+
+.source-ref a:hover {
+  border-bottom-color: var(--line-strong);
+}
+
 @media (max-width: 960px) {
   .site-header {
     grid-template-columns: auto auto;
@@ -1879,7 +2077,8 @@ h3 {
   /* Brief page: single-column cards and tighter spacing */
   .brief-facts,
   .kpi-grid,
-  .lens-grid {
+  .lens-grid,
+  .hook-grid {
     grid-template-columns: 1fr;
   }
 
