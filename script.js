@@ -220,4 +220,151 @@
       setStatus("Opening your email app. If nothing opens, use Copy email.");
     });
   }
+
+  /* ---------------------------------------------------------------------- *
+   * Brief page: scroll progress indicator (sample-nvidia-q1-fy2027.html)
+   * ---------------------------------------------------------------------- */
+  var progressBar = document.getElementById("read-progress-bar");
+
+  if (progressBar) {
+    var updateProgress = function () {
+      var doc = document.documentElement;
+      var scrollable = doc.scrollHeight - doc.clientHeight;
+      var ratio = scrollable > 0 ? doc.scrollTop / scrollable : 0;
+      if (ratio < 0) ratio = 0;
+      if (ratio > 1) ratio = 1;
+      progressBar.style.width = (ratio * 100).toFixed(2) + "%";
+    };
+
+    var progressTicking = false;
+    window.addEventListener(
+      "scroll",
+      function () {
+        if (progressTicking) return;
+        progressTicking = true;
+        window.requestAnimationFrame(function () {
+          updateProgress();
+          progressTicking = false;
+        });
+      },
+      { passive: true }
+    );
+    window.addEventListener("resize", updateProgress, { passive: true });
+    updateProgress();
+  }
+
+  /* ---------------------------------------------------------------------- *
+   * Brief page: highlight the active table-of-contents link
+   * ---------------------------------------------------------------------- */
+  var tocNav = document.getElementById("brief-toc-nav");
+
+  if (tocNav && "IntersectionObserver" in window) {
+    var tocLinks = Array.prototype.slice.call(tocNav.querySelectorAll("a"));
+    var linkById = {};
+    var sections = [];
+
+    tocLinks.forEach(function (link) {
+      var id = (link.getAttribute("href") || "").replace(/^#/, "");
+      var section = id ? document.getElementById(id) : null;
+      if (section) {
+        linkById[id] = link;
+        sections.push(section);
+      }
+    });
+
+    var setActive = function (id) {
+      tocLinks.forEach(function (link) {
+        link.classList.toggle("is-active", link === linkById[id]);
+      });
+    };
+
+    var visible = {};
+    var tocObserver = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          visible[entry.target.id] = entry.isIntersecting;
+        });
+        // Activate the first section (in document order) currently on screen.
+        for (var i = 0; i < sections.length; i++) {
+          if (visible[sections[i].id]) {
+            setActive(sections[i].id);
+            break;
+          }
+        }
+      },
+      { rootMargin: "-96px 0px -55% 0px", threshold: 0 }
+    );
+
+    sections.forEach(function (section) {
+      tocObserver.observe(section);
+    });
+  }
+
+  /* ---------------------------------------------------------------------- *
+   * Brief page: copy the publish-ready X / Twitter thread
+   * ---------------------------------------------------------------------- */
+  var copyThreadButton = document.getElementById("copy-thread");
+
+  if (copyThreadButton) {
+    var threadStatus = document.getElementById("copy-thread-status");
+    var threadResetTimer;
+
+    var getThreadText = function () {
+      var targetId = copyThreadButton.getAttribute("data-copy-target");
+      var container = targetId ? document.getElementById(targetId) : null;
+      if (!container) return "";
+      var posts = Array.prototype.slice.call(container.querySelectorAll(".tweet p"));
+      return posts
+        .map(function (p) {
+          return (p.textContent || "").trim();
+        })
+        .filter(Boolean)
+        .join("\n\n");
+    };
+
+    var flashThreadCopied = function () {
+      copyThreadButton.textContent = "Copied";
+      copyThreadButton.classList.add("is-copied");
+      if (threadStatus) threadStatus.textContent = "Thread copied to your clipboard.";
+      window.clearTimeout(threadResetTimer);
+      threadResetTimer = window.setTimeout(function () {
+        copyThreadButton.textContent = "Copy X thread";
+        copyThreadButton.classList.remove("is-copied");
+      }, 1800);
+    };
+
+    var legacyCopyThread = function (text) {
+      var area = document.createElement("textarea");
+      area.value = text;
+      area.setAttribute("readonly", "");
+      area.style.position = "absolute";
+      area.style.left = "-9999px";
+      document.body.appendChild(area);
+      area.select();
+      var ok = false;
+      try {
+        ok = document.execCommand("copy");
+      } catch (error) {
+        ok = false;
+      }
+      document.body.removeChild(area);
+      return ok;
+    };
+
+    copyThreadButton.addEventListener("click", function () {
+      var text = getThreadText();
+      if (!text) return;
+
+      if (navigator.clipboard && navigator.clipboard.writeText && window.isSecureContext) {
+        navigator.clipboard.writeText(text).then(flashThreadCopied, function () {
+          if (legacyCopyThread(text)) flashThreadCopied();
+          else if (threadStatus) threadStatus.textContent = "Copy failed — select the thread text manually.";
+        });
+        return;
+      }
+
+      if (legacyCopyThread(text)) flashThreadCopied();
+      else if (threadStatus) threadStatus.textContent = "Copy failed — select the thread text manually.";
+    });
+  }
 })();

@@ -1,6 +1,6 @@
 # Zelvra Landing Page
 
-Static marketing site for **Zelvra**, a pre-launch service that turns financial filings,
+Static marketing site for **Zelvra**, a research/content desk that turns financial filings,
 earnings reports, 10-Ks, and transcripts into sharp, source-backed research briefs for
 finance creators.
 
@@ -13,10 +13,11 @@ finance creators.
 | File | Purpose |
 | --- | --- |
 | `index.html` | Homepage: nav, hero, problem, what we deliver, process, sample preview, contact CTA, footer. |
-| `sample.html` | Full illustrative "sample brief" structure page (no real company data). |
+| `sample-nvidia-q1-fy2027.html` | Real NVIDIA Q1 FY2027 sample brief: KPI cards, sticky TOC, copy-able X thread, collapsible source list and YouTube talking points. |
+| `sample.html` | Generic "sample brief" structure page (brief anatomy, no real company data). |
 | `404.html` | Styled not-found page (served by GitHub Pages for unknown paths). |
 | `styles.css` | Responsive visual design (dark financial theme). |
-| `script.js` | Vanilla JS: mobile nav, interactive sample tabs, copy-email. |
+| `script.js` | Vanilla JS: mobile nav, interactive sample tabs, copy-email, brief scroll progress, sticky-TOC highlighting, copy-X-thread. |
 | `CNAME` | Custom domain for GitHub Pages (`zelvra.tech`). |
 | `site.webmanifest` | Web app manifest (name, theme color, icon). |
 | `robots.txt` / `sitemap.xml` | Crawler directives + URL list. |
