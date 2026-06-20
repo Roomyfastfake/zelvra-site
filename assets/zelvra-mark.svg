@@ -1,12 +1,14 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Zelvra">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-labelledby="title desc">
+  <title id="title">Zelvra mark</title>
+  <desc id="desc">Geometric Zelvra mark in blue-cyan gradient.</desc>
   <defs>
-    <linearGradient id="zmGlow" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#8bd0ff"/>
-      <stop offset="1" stop-color="#55b8ff"/>
+    <linearGradient id="zelvraGradient" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0D7CE9"/>
+      <stop offset="100%" stop-color="#15CFF1"/>
     </linearGradient>
   </defs>
-  <rect width="64" height="64" rx="14" fill="#05070d"/>
-  <rect x="11" y="11" width="42" height="42" rx="9" fill="#0b1421" stroke="#8bd0ff" stroke-opacity="0.62" stroke-width="2"/>
-  <path d="M15 39 C24 36 25 24 34 22 C41 20 43 15 49 15" fill="none" stroke="url(#zmGlow)" stroke-width="3" stroke-linecap="round"/>
-  <path d="M15 49 L49 15" stroke="#79e0c2" stroke-opacity="0.38" stroke-width="2" stroke-linecap="round"/>
+  <g fill="url(#zelvraGradient)">
+    <path d="m29.625 1-3.099 3.172H4.054v23.657h22.472L29.625 31H1V1zM32 0H0v32h32l-5.054-5.172H5.054V5.172h21.893z"/>
+    <path d="M21.038 10.962v10.076H10.962V10.962zm1-1H9.962v12.076h12.076z"/>
+  </g>
 </svg>
