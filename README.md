@@ -26,8 +26,8 @@ finance creators.
 | `assets/favicon.svg` | Favicon. |
 | `assets/zelvra-mark.svg` | Logo mark used in the header and footer. |
 | `assets/og-image.png` | 1200x630 social share image (Open Graph / Twitter). |
-| `assets/og-image.py` | Pillow script that regenerates `og-image.png`. |
-| `ops/` | Internal content-ops templates (not part of the deployed pages). |
+| `scripts/make_og_image.py` | Stdlib-only Python script that regenerates `og-image.png` (no dependencies). |
+| `*-template.md`, `website-update-notes.md` | Internal content-ops templates (not part of the deployed pages). |
 | `DEPLOYMENT_CHECKLIST.md` / `LAUNCH_CHECKLIST.md` | Step-by-step launch guides. |
 
 ## Edit the copy
@@ -39,12 +39,12 @@ finance creators.
 - The full sample-brief structure is in `sample.html`.
 - Contact address is `hello@zelvra.tech`. To change it, update the `EMAIL` constant in
   `script.js`, the `mailto:` links and `#contact-email` value in the HTML, and the JSON-LD block.
-- See `ops/website-update-notes.md` for a plain-English editing guide.
+- See `website-update-notes.md` for a plain-English editing guide.
 
-Regenerate the social image after a brand tweak:
+Regenerate the social image after a brand tweak (no dependencies required):
 
-```powershell
-py -3 assets/og-image.py
+```bash
+python3 scripts/make_og_image.py
 ```
 
 ## Preview locally
@@ -88,7 +88,7 @@ A   @   185.199.111.153
 **`www` subdomain → your GitHub Pages site:**
 
 ```
-CNAME   www   mtanu2017.github.io
+CNAME   www   roomyfastfake.github.io
 ```
 
 (Optional but recommended for full IPv6 support, add the four GitHub Pages AAAA records:
