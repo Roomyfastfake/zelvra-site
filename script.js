@@ -254,11 +254,16 @@
   }
 
   /* ---------------------------------------------------------------------- *
-   * Brief page: highlight the active table-of-contents link
+   * Brief page: highlight the active table-of-contents link (scrollspy)
+   *
+   * Deterministic position-based scrollspy: the active section is the last
+   * one whose top has scrolled above a fixed offset (sticky header + buffer).
+   * This avoids the IntersectionObserver pitfall of keeping the *previous*
+   * section active while it is still partially within the observed band.
    * ---------------------------------------------------------------------- */
   var tocNav = document.getElementById("brief-toc-nav");
 
-  if (tocNav && "IntersectionObserver" in window) {
+  if (tocNav) {
     var tocLinks = Array.prototype.slice.call(tocNav.querySelectorAll("a"));
     var linkById = {};
     var sections = [];
@@ -272,32 +277,88 @@
       }
     });
 
-    var setActive = function (id) {
-      tocLinks.forEach(function (link) {
-        link.classList.toggle("is-active", link === linkById[id]);
-      });
-    };
+    if (sections.length) {
+      // Offset = sticky header height (~76px) + a small buffer. A section
+      // becomes "current" once its top passes above this line.
+      var TOC_OFFSET = 140;
+      var activeId = null;
 
-    var visible = {};
-    var tocObserver = new IntersectionObserver(
-      function (entries) {
-        entries.forEach(function (entry) {
-          visible[entry.target.id] = entry.isIntersecting;
+      var setActive = function (id) {
+        if (!id || id === activeId) return;
+        activeId = id;
+        tocLinks.forEach(function (link) {
+          link.classList.toggle("is-active", link === linkById[id]);
         });
-        // Activate the first section (in document order) currently on screen.
+      };
+
+      var currentSectionId = function () {
+        var doc = document.documentElement;
+        // At the very bottom of the page force the last section active so a
+        // short trailing section can never be skipped.
+        if (window.innerHeight + window.scrollY >= doc.scrollHeight - 2) {
+          return sections[sections.length - 1].id;
+        }
+        var current = sections[0].id;
         for (var i = 0; i < sections.length; i++) {
-          if (visible[sections[i].id]) {
-            setActive(sections[i].id);
+          if (sections[i].getBoundingClientRect().top <= TOC_OFFSET) {
+            current = sections[i].id;
+          } else {
             break;
           }
         }
-      },
-      { rootMargin: "-96px 0px -55% 0px", threshold: 0 }
-    );
+        return current;
+      };
 
-    sections.forEach(function (section) {
-      tocObserver.observe(section);
-    });
+      // A click sets the target active immediately and briefly locks the spy
+      // so intermediate sections don't flicker during the smooth scroll.
+      var reduceMotion =
+        window.matchMedia &&
+        window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      var clickLock = false;
+      var clickLockTimer;
+
+      var runSpy = function () {
+        if (clickLock) return;
+        setActive(currentSectionId());
+      };
+
+      tocLinks.forEach(function (link) {
+        link.addEventListener("click", function () {
+          var id = (link.getAttribute("href") || "").replace(/^#/, "");
+          if (!linkById[id]) return;
+          setActive(id); // exact clicked item active immediately
+          clickLock = true;
+          window.clearTimeout(clickLockTimer);
+          clickLockTimer = window.setTimeout(
+            function () {
+              clickLock = false;
+              setActive(currentSectionId()); // re-confirm after scroll settles
+            },
+            reduceMotion ? 80 : 700
+          );
+        });
+      });
+
+      var spyTicking = false;
+      window.addEventListener(
+        "scroll",
+        function () {
+          if (spyTicking) return;
+          spyTicking = true;
+          window.requestAnimationFrame(function () {
+            runSpy();
+            spyTicking = false;
+          });
+        },
+        { passive: true }
+      );
+      window.addEventListener("resize", runSpy, { passive: true });
+
+      // Initial state: honour an incoming URL hash, otherwise compute.
+      var initialId = (window.location.hash || "").replace(/^#/, "");
+      if (initialId && linkById[initialId]) setActive(initialId);
+      else setActive(currentSectionId());
+    }
   }
 
   /* ---------------------------------------------------------------------- *
