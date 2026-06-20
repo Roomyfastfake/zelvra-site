@@ -136,7 +136,7 @@
       tabs.forEach(function (other) {
         var isActive = other === tab;
         other.classList.toggle("active", isActive);
-        other.setAttribute("aria-selected", String(isActive));
+        other.setAttribute("aria-pressed", String(isActive));
       });
       renderSample(tab.getAttribute("data-sample"));
     });
