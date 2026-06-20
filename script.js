@@ -256,10 +256,12 @@
   /* ---------------------------------------------------------------------- *
    * Brief page: highlight the active table-of-contents link (scrollspy)
    *
-   * Deterministic position-based scrollspy: the active section is the last
-   * one whose top has scrolled above a fixed offset (sticky header + buffer).
-   * This avoids the IntersectionObserver pitfall of keeping the *previous*
-   * section active while it is still partially within the observed band.
+   * Click and hash navigation are authoritative: the clicked / hash target is
+   * set active and "locked" so the in-flight smooth scroll cannot revert it.
+   * The lock is released either when the position spy agrees it has arrived at
+   * the target, or when the user makes a real scroll gesture — after which the
+   * position spy drives the active link for ordinary manual scrolling. No
+   * timeouts, so long sections and direct #hash loads stay correct.
    * ---------------------------------------------------------------------- */
   var tocNav = document.getElementById("brief-toc-nav");
 
@@ -278,11 +280,13 @@
     });
 
     if (sections.length) {
-      // Offset = sticky header height (~76px) + a small buffer. A section
-      // becomes "current" once its top passes above this line.
-      var TOC_OFFSET = 140;
-      var activeId = null;
+      var briefHeader = document.querySelector(".site-header");
+      // Offset line sitting just below the sticky header.
+      var tocOffset = function () {
+        return (briefHeader ? briefHeader.offsetHeight : 76) + 48;
+      };
 
+      var activeId = null;
       var setActive = function (id) {
         if (!id || id === activeId) return;
         activeId = id;
@@ -291,16 +295,19 @@
         });
       };
 
+      // Position spy: the active section is the LAST one whose top has passed
+      // the offset line — i.e. the section currently being read. Taking the
+      // last (not the first) qualifying section stops an earlier long section
+      // from winning. The bottom of the page forces the final section active.
       var currentSectionId = function () {
         var doc = document.documentElement;
-        // At the very bottom of the page force the last section active so a
-        // short trailing section can never be skipped.
         if (window.innerHeight + window.scrollY >= doc.scrollHeight - 2) {
           return sections[sections.length - 1].id;
         }
+        var offset = tocOffset();
         var current = sections[0].id;
         for (var i = 0; i < sections.length; i++) {
-          if (sections[i].getBoundingClientRect().top <= TOC_OFFSET) {
+          if (sections[i].getBoundingClientRect().top <= offset) {
             current = sections[i].id;
           } else {
             break;
@@ -309,34 +316,59 @@
         return current;
       };
 
-      // A click sets the target active immediately and briefly locks the spy
-      // so intermediate sections don't flicker during the smooth scroll.
-      var reduceMotion =
-        window.matchMedia &&
-        window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-      var clickLock = false;
-      var clickLockTimer;
-
-      var runSpy = function () {
-        if (clickLock) return;
+      // lockedId: while set, the spy keeps this target active until it either
+      // arrives or the user takes over.
+      var lockedId = null;
+      var lockTo = function (id) {
+        if (!linkById[id]) return;
+        lockedId = id;
+        setActive(id);
+      };
+      var releaseLock = function () {
+        if (lockedId === null) return;
+        lockedId = null;
         setActive(currentSectionId());
       };
 
+      var runSpy = function () {
+        var cur = currentSectionId();
+        if (lockedId !== null) {
+          if (cur === lockedId) lockedId = null; // arrived — hand back to spy
+          else return; // still travelling toward the target — keep it locked
+        }
+        setActive(cur);
+      };
+
+      // Clicking a TOC link locks to that target immediately (native hash +
+      // smooth scroll still run; the lock keeps the right item lit meanwhile).
       tocLinks.forEach(function (link) {
         link.addEventListener("click", function () {
-          var id = (link.getAttribute("href") || "").replace(/^#/, "");
-          if (!linkById[id]) return;
-          setActive(id); // exact clicked item active immediately
-          clickLock = true;
-          window.clearTimeout(clickLockTimer);
-          clickLockTimer = window.setTimeout(
-            function () {
-              clickLock = false;
-              setActive(currentSectionId()); // re-confirm after scroll settles
-            },
-            reduceMotion ? 80 : 700
-          );
+          lockTo((link.getAttribute("href") || "").replace(/^#/, ""));
         });
+      });
+
+      // Hash navigation (including TOC clicks) is the source of truth.
+      window.addEventListener("hashchange", function () {
+        var id = (window.location.hash || "").replace(/^#/, "");
+        if (linkById[id]) lockTo(id);
+      });
+
+      // A genuine user scroll gesture hands control straight back to the spy.
+      window.addEventListener("wheel", releaseLock, { passive: true });
+      window.addEventListener("touchmove", releaseLock, { passive: true });
+      window.addEventListener("keydown", function (event) {
+        switch (event.key) {
+          case "ArrowUp":
+          case "ArrowDown":
+          case "PageUp":
+          case "PageDown":
+          case "Home":
+          case "End":
+          case " ":
+          case "Spacebar":
+            releaseLock();
+            break;
+        }
       });
 
       var spyTicking = false;
@@ -354,10 +386,18 @@
       );
       window.addEventListener("resize", runSpy, { passive: true });
 
-      // Initial state: honour an incoming URL hash, otherwise compute.
+      // Initial state: a URL hash wins and locks so the browser's jump to the
+      // anchor cannot revert it; otherwise compute from scroll position.
       var initialId = (window.location.hash || "").replace(/^#/, "");
-      if (initialId && linkById[initialId]) setActive(initialId);
-      else setActive(currentSectionId());
+      if (initialId && linkById[initialId]) {
+        lockTo(initialId);
+        // Re-assert after full load in case the browser is still settling.
+        window.addEventListener("load", function () {
+          if (lockedId === initialId) setActive(initialId);
+        });
+      } else {
+        setActive(currentSectionId());
+      }
     }
   }
 
