@@ -256,10 +256,10 @@
   /* ---------------------------------------------------------------------- *
    * Brief page: highlight the active table-of-contents link (scrollspy)
    *
-   * Deterministic position-based scrollspy: the active section is the last
-   * one whose top has scrolled above a fixed offset (sticky header + buffer).
-   * This avoids the IntersectionObserver pitfall of keeping the *previous*
-   * section active while it is still partially within the observed band.
+   * Click and hash navigation are authoritative: a valid URL hash stays active
+   * until a real user scroll gesture hands control back to the position spy.
+   * This avoids directional smooth-scroll races caused by scroll-padding and
+   * scroll-margin placing the final anchor below the spy line.
    * ---------------------------------------------------------------------- */
   var tocNav = document.getElementById("brief-toc-nav");
 
@@ -278,9 +278,17 @@
     });
 
     if (sections.length) {
-      // Offset = sticky header height (~76px) + a small buffer. A section
-      // becomes "current" once its top passes above this line.
-      var TOC_OFFSET = 140;
+      var briefHeader = document.querySelector(".site-header");
+      // Offset line sitting just below the sticky header.
+      var tocOffset = function () {
+        var rootStyles = window.getComputedStyle(document.documentElement);
+        var sectionStyles = window.getComputedStyle(sections[0]);
+        var scrollPadding = parseFloat(rootStyles.scrollPaddingTop) || 0;
+        var scrollMargin = parseFloat(sectionStyles.scrollMarginTop) || 0;
+
+        return scrollPadding + scrollMargin || (briefHeader ? briefHeader.offsetHeight : 76) + 48;
+      };
+
       var activeId = null;
 
       var setActive = function (id) {
@@ -298,9 +306,10 @@
         if (window.innerHeight + window.scrollY >= doc.scrollHeight - 2) {
           return sections[sections.length - 1].id;
         }
+        var offset = tocOffset();
         var current = sections[0].id;
         for (var i = 0; i < sections.length; i++) {
-          if (sections[i].getBoundingClientRect().top <= TOC_OFFSET) {
+          if (sections[i].getBoundingClientRect().top <= offset) {
             current = sections[i].id;
           } else {
             break;
@@ -309,34 +318,61 @@
         return current;
       };
 
-      // A click sets the target active immediately and briefly locks the spy
-      // so intermediate sections don't flicker during the smooth scroll.
-      var reduceMotion =
-        window.matchMedia &&
-        window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-      var clickLock = false;
-      var clickLockTimer;
+      // hashTargetId: while set, the URL hash is the source of truth. A real
+      // scroll gesture clears it and hands control back to the position spy.
+      var hashTargetId = null;
+      var setHashTarget = function (id) {
+        if (!linkById[id]) return;
+        hashTargetId = id;
+        setActive(id);
+      };
+      var releaseHashTarget = function () {
+        if (hashTargetId === null) return;
+        hashTargetId = null;
+      };
 
       var runSpy = function () {
-        if (clickLock) return;
+        if (hashTargetId !== null) {
+          setActive(hashTargetId);
+          return;
+        }
         setActive(currentSectionId());
       };
 
+      // Clicking a TOC link locks to that target immediately (native hash +
+      // smooth scroll still run; the lock keeps the right item lit meanwhile).
       tocLinks.forEach(function (link) {
         link.addEventListener("click", function () {
-          var id = (link.getAttribute("href") || "").replace(/^#/, "");
-          if (!linkById[id]) return;
-          setActive(id); // exact clicked item active immediately
-          clickLock = true;
-          window.clearTimeout(clickLockTimer);
-          clickLockTimer = window.setTimeout(
-            function () {
-              clickLock = false;
-              setActive(currentSectionId()); // re-confirm after scroll settles
-            },
-            reduceMotion ? 80 : 700
-          );
+          setHashTarget((link.getAttribute("href") || "").replace(/^#/, ""));
         });
+      });
+
+      // Hash navigation (including TOC clicks) is the source of truth.
+      window.addEventListener("hashchange", function () {
+        var id = (window.location.hash || "").replace(/^#/, "");
+        if (linkById[id]) setHashTarget(id);
+        else {
+          hashTargetId = null;
+          runSpy();
+        }
+      });
+
+      // A genuine user scroll gesture hands control straight back to the spy.
+      window.addEventListener("wheel", releaseHashTarget, { passive: true });
+      window.addEventListener("touchmove", releaseHashTarget, { passive: true });
+      window.addEventListener("keydown", function (event) {
+        switch (event.key) {
+          case "ArrowUp":
+          case "ArrowDown":
+          case "PageUp":
+          case "PageDown":
+          case "Home":
+          case "End":
+          case " ":
+          case "Spacebar":
+            releaseHashTarget();
+            break;
+        }
       });
 
       var spyTicking = false;
@@ -356,8 +392,15 @@
 
       // Initial state: honour an incoming URL hash, otherwise compute.
       var initialId = (window.location.hash || "").replace(/^#/, "");
-      if (initialId && linkById[initialId]) setActive(initialId);
-      else setActive(currentSectionId());
+      if (initialId && linkById[initialId]) {
+        setHashTarget(initialId);
+        // Re-assert after full load in case the browser is still settling.
+        window.addEventListener("load", function () {
+          if (hashTargetId === initialId) setActive(initialId);
+        });
+      } else {
+        setActive(currentSectionId());
+      }
     }
   }
 
