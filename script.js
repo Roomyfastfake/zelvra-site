@@ -256,12 +256,10 @@
   /* ---------------------------------------------------------------------- *
    * Brief page: highlight the active table-of-contents link (scrollspy)
    *
-   * Click and hash navigation are authoritative: the clicked / hash target is
-   * set active and "locked" so the in-flight smooth scroll cannot revert it.
-   * The lock is released either when the position spy agrees it has arrived at
-   * the target, or when the user makes a real scroll gesture — after which the
-   * position spy drives the active link for ordinary manual scrolling. No
-   * timeouts, so long sections and direct #hash loads stay correct.
+   * Click and hash navigation are authoritative: a valid URL hash stays active
+   * until a real user scroll gesture hands control back to the position spy.
+   * This avoids directional smooth-scroll races caused by scroll-padding and
+   * scroll-margin placing the final anchor below the spy line.
    * ---------------------------------------------------------------------- */
   var tocNav = document.getElementById("brief-toc-nav");
 
@@ -283,7 +281,12 @@
       var briefHeader = document.querySelector(".site-header");
       // Offset line sitting just below the sticky header.
       var tocOffset = function () {
-        return (briefHeader ? briefHeader.offsetHeight : 76) + 48;
+        var rootStyles = window.getComputedStyle(document.documentElement);
+        var sectionStyles = window.getComputedStyle(sections[0]);
+        var scrollPadding = parseFloat(rootStyles.scrollPaddingTop) || 0;
+        var scrollMargin = parseFloat(sectionStyles.scrollMarginTop) || 0;
+
+        return scrollPadding + scrollMargin || (briefHeader ? briefHeader.offsetHeight : 76) + 48;
       };
 
       var activeId = null;
@@ -316,46 +319,48 @@
         return current;
       };
 
-      // lockedId: while set, the spy keeps this target active until it either
-      // arrives or the user takes over.
-      var lockedId = null;
-      var lockTo = function (id) {
+      // hashTargetId: while set, the URL hash is the source of truth. A real
+      // scroll gesture clears it and hands control back to the position spy.
+      var hashTargetId = null;
+      var setHashTarget = function (id) {
         if (!linkById[id]) return;
-        lockedId = id;
+        hashTargetId = id;
         setActive(id);
       };
-      var releaseLock = function () {
-        if (lockedId === null) return;
-        lockedId = null;
-        setActive(currentSectionId());
+      var releaseHashTarget = function () {
+        if (hashTargetId === null) return;
+        hashTargetId = null;
       };
 
       var runSpy = function () {
-        var cur = currentSectionId();
-        if (lockedId !== null) {
-          if (cur === lockedId) lockedId = null; // arrived — hand back to spy
-          else return; // still travelling toward the target — keep it locked
+        if (hashTargetId !== null) {
+          setActive(hashTargetId);
+          return;
         }
-        setActive(cur);
+        setActive(currentSectionId());
       };
 
       // Clicking a TOC link locks to that target immediately (native hash +
       // smooth scroll still run; the lock keeps the right item lit meanwhile).
       tocLinks.forEach(function (link) {
         link.addEventListener("click", function () {
-          lockTo((link.getAttribute("href") || "").replace(/^#/, ""));
+          setHashTarget((link.getAttribute("href") || "").replace(/^#/, ""));
         });
       });
 
       // Hash navigation (including TOC clicks) is the source of truth.
       window.addEventListener("hashchange", function () {
         var id = (window.location.hash || "").replace(/^#/, "");
-        if (linkById[id]) lockTo(id);
+        if (linkById[id]) setHashTarget(id);
+        else {
+          hashTargetId = null;
+          runSpy();
+        }
       });
 
       // A genuine user scroll gesture hands control straight back to the spy.
-      window.addEventListener("wheel", releaseLock, { passive: true });
-      window.addEventListener("touchmove", releaseLock, { passive: true });
+      window.addEventListener("wheel", releaseHashTarget, { passive: true });
+      window.addEventListener("touchmove", releaseHashTarget, { passive: true });
       window.addEventListener("keydown", function (event) {
         switch (event.key) {
           case "ArrowUp":
@@ -366,7 +371,7 @@
           case "End":
           case " ":
           case "Spacebar":
-            releaseLock();
+            releaseHashTarget();
             break;
         }
       });
@@ -390,10 +395,10 @@
       // anchor cannot revert it; otherwise compute from scroll position.
       var initialId = (window.location.hash || "").replace(/^#/, "");
       if (initialId && linkById[initialId]) {
-        lockTo(initialId);
+        setHashTarget(initialId);
         // Re-assert after full load in case the browser is still settling.
         window.addEventListener("load", function () {
-          if (lockedId === initialId) setActive(initialId);
+          if (hashTargetId === initialId) setActive(initialId);
         });
       } else {
         setActive(currentSectionId());
