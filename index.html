@@ -80,7 +80,7 @@
         <a href="#sample">Sample</a>
         <a href="#contact">Contact</a>
       </nav>
-      <a class="header-cta" href="mailto:hello@zelvra.tech?subject=Request%20a%20sample%20brief">Request a sample brief</a>
+      <a class="header-cta" href="mailto:hello@zelvra.tech?subject=Request%20a%20sample%20brief&body=Hi%20Zelvra%2C%0A%0AI'd%20like%20to%20request%20a%20brief.%0A%0ACompany%20or%20ticker%3A%0ASource%20material%20or%20link%3A%0ADesired%20output%3A%0ADeadline%3A%0A%0AThanks%2C">Request a sample brief</a>
     </header>
 
     <main id="top">
@@ -207,10 +207,10 @@
             Below is how a Zelvra brief is organized across any source type. For the full, source-checked
             version, read the real NVIDIA Q1 FY2027 sample brief.
           </p>
-          <div class="sample-tabs" role="tablist" aria-label="Sample brief source type">
-            <button class="sample-tab active" type="button" role="tab" aria-selected="true" data-sample="earnings">Earnings call</button>
-            <button class="sample-tab" type="button" role="tab" aria-selected="false" data-sample="filing">10-K filing</button>
-            <button class="sample-tab" type="button" role="tab" aria-selected="false" data-sample="transcript">Transcript</button>
+          <div class="sample-tabs" role="group" aria-label="Sample brief source type">
+            <button class="sample-tab active" type="button" aria-pressed="true" data-sample="earnings">Earnings call</button>
+            <button class="sample-tab" type="button" aria-pressed="false" data-sample="filing">10-K filing</button>
+            <button class="sample-tab" type="button" aria-pressed="false" data-sample="transcript">Transcript</button>
           </div>
           <a class="sample-fulllink" href="./sample-nvidia-q1-fy2027.html">View the real NVIDIA sample brief &rarr;</a>
         </div>

@@ -136,7 +136,7 @@
       tabs.forEach(function (other) {
         var isActive = other === tab;
         other.classList.toggle("active", isActive);
-        other.setAttribute("aria-selected", String(isActive));
+        other.setAttribute("aria-pressed", String(isActive));
       });
       renderSample(tab.getAttribute("data-sample"));
     });
@@ -290,7 +290,6 @@
       };
 
       var activeId = null;
-
       var setActive = function (id) {
         if (!id || id === activeId) return;
         activeId = id;
@@ -299,10 +298,12 @@
         });
       };
 
+      // Position spy: the active section is the LAST one whose top has passed
+      // the offset line — i.e. the section currently being read. Taking the
+      // last (not the first) qualifying section stops an earlier long section
+      // from winning. The bottom of the page forces the final section active.
       var currentSectionId = function () {
         var doc = document.documentElement;
-        // At the very bottom of the page force the last section active so a
-        // short trailing section can never be skipped.
         if (window.innerHeight + window.scrollY >= doc.scrollHeight - 2) {
           return sections[sections.length - 1].id;
         }
@@ -390,7 +391,8 @@
       );
       window.addEventListener("resize", runSpy, { passive: true });
 
-      // Initial state: honour an incoming URL hash, otherwise compute.
+      // Initial state: a URL hash wins and locks so the browser's jump to the
+      // anchor cannot revert it; otherwise compute from scroll position.
       var initialId = (window.location.hash || "").replace(/^#/, "");
       if (initialId && linkById[initialId]) {
         setHashTarget(initialId);
