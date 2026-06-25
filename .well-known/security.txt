@@ -1,0 +1,4 @@
+Contact: mailto:hello@zelvra.tech
+Expires: 2027-06-22T00:00:00Z
+Preferred-Languages: en
+Canonical: https://zelvra.tech/.well-known/security.txt
