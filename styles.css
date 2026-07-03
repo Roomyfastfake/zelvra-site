@@ -1252,3 +1252,37 @@ h3 {
     animation-iteration-count: 1 !important;
   }
 }
+
+/* Real sample brief pages (added 2026-07-03) */
+.src {
+  display: inline;
+  color: var(--accent-strong, #7fb2ff);
+  font-size: 0.8em;
+  font-style: normal;
+  opacity: 0.85;
+  white-space: normal;
+}
+
+.sample-copy .offer-list {
+  grid-template-columns: 1fr;
+  margin: 0 0 22px;
+}
+
+.sample-copy .offer-list a {
+  color: var(--text);
+  text-decoration: none;
+}
+
+.sample-copy .offer-list a:hover strong {
+  color: var(--accent-strong, #7fb2ff);
+}
+
+.sample-page-body .metric-list li {
+  flex-direction: column;
+  gap: 4px;
+}
+
+.sample-page-body .metric-list strong {
+  max-width: 100%;
+  text-align: left;
+}

@@ -87,7 +87,7 @@ A   @   185.199.111.153
 **`www` subdomain → your GitHub Pages site:**
 
 ```
-CNAME   www   mtanu2017.github.io
+CNAME   www   roomyfastfake.github.io
 ```
 
 (Optional but recommended for full IPv6 support, add the four GitHub Pages AAAA records:

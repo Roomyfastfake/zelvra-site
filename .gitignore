@@ -1,2 +1,6 @@
 # Local tooling / preview config — not part of the deployed static site
 .claude/
+
+# Internal ops — never publish (site repo is public)
+ops/
+PLAN.md
