@@ -72,8 +72,13 @@ No build step, npm install, or backend is required.
 
 ## Cloudflare DNS records
 
-Add these for `zelvra.tech`. Set proxy status to **DNS only (grey cloud)** so GitHub can
-issue and renew the TLS certificate.
+**Already configured and working (July 2026):** zelvra.tech serves the
+`Roomyfastfake/zelvra-site` GitHub Pages repo through the Cloudflare proxy with valid
+HTTPS. **Do not change DNS.** Deploys are just `git push origin main` (or
+`.\deploy.ps1 "message"`).
+
+The reference records below are only for a from-scratch rebuild. If ever redoing
+this, grey-cloud (DNS only) lets GitHub issue its own TLS certificate:
 
 **Apex domain `zelvra.tech` → GitHub Pages:**
 
