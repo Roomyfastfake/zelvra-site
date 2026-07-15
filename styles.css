@@ -1309,3 +1309,42 @@ h3 {
   margin: 0 auto 18px;
   color: var(--muted-strong);
 }
+
+/* Earnings week pass banner */
+.season-pass {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin: 0 0 22px;
+  padding: 22px 26px;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius);
+  background:
+    linear-gradient(180deg, rgba(85, 184, 255, 0.08), rgba(255, 255, 255, 0.03)),
+    rgba(4, 8, 15, 0.7);
+}
+
+.season-pass-copy {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 20px;
+}
+
+.season-pass h3 {
+  margin: 0 0 6px;
+}
+
+.season-pass p {
+  max-width: 620px;
+  margin: 0;
+  color: var(--muted-strong);
+}
+
+.pass-price {
+  font-size: 1.7rem;
+  font-weight: 700;
+  color: var(--accent-strong);
+}
