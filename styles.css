@@ -1310,6 +1310,10 @@ h3 {
   color: var(--muted-strong);
 }
 
+.brief-cta .offer-actions {
+  justify-content: center;
+}
+
 /* Earnings week pass banner */
 .season-pass {
   display: flex;
