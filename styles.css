@@ -571,16 +571,8 @@ h3 {
   font-weight: 800;
 }
 
-.sample {
-  display: grid;
-  grid-template-columns: minmax(0, 0.74fr) minmax(360px, 0.9fr);
-  gap: 48px;
-  align-items: start;
-}
-
 .sample-copy {
-  position: sticky;
-  top: 120px;
+  max-width: 760px;
 }
 
 .sample-copy p {
