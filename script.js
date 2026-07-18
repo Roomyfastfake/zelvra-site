@@ -3,6 +3,20 @@
 (function () {
   "use strict";
 
+  /* ---------------------------------------------------------------------- *
+   * Force HTTPS (belt-and-braces; primary fix is the host/CDN redirect)
+   * ---------------------------------------------------------------------- */
+  if (
+    window.location.protocol === "http:" &&
+    window.location.hostname !== "localhost" &&
+    window.location.hostname !== "127.0.0.1"
+  ) {
+    window.location.replace(
+      "https://" + window.location.host + window.location.pathname +
+      window.location.search + window.location.hash
+    );
+  }
+
   var EMAIL = "hello@zelvra.tech";
 
   /* ---------------------------------------------------------------------- *

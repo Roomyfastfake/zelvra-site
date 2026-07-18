@@ -1,192 +1,555 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Netflix Q2 2026 Earnings Brief — Zelvra</title>
-  <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="styles.css" />
-</head>
-<body>
-  <header class="site-header">
-    <a href="index.html" class="logo">Zelvra</a>
-    <nav>
-      <a href="index.html#sample">Samples</a>
-      <a href="index.html#pricing">Pricing</a>
-      <a href="index.html#about">About</a>
-    </nav>
-  </header>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <main class="brief-page">
-    <div class="brief-meta">
-      <p class="brief-disclaimer">Research content only. Not investment advice. Every figure is sourced — check any number yourself.</p>
-      <h1>Netflix (NFLX) — Q2 2026 Earnings Brief</h1>
-      <p class="brief-subtitle">Quarter ended June 30, 2026 · Reported July 16, 2026 · Prepared by Zelvra</p>
-    </div>
+    <title>Netflix Q2 2026 Earnings Brief | Zelvra</title>
+    <meta
+      name="description"
+      content="A real Zelvra research brief built overnight from Netflix's Q2 2026 shareholder letter and earnings call: the five numbers that matter, what changed, bull/bear/overlooked reads, a publish-ready X thread, and a full source list."
+    >
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="Zelvra">
+    <meta name="theme-color" content="#05070d">
+    <link rel="canonical" href="https://zelvra.tech/sample-nflx-q2-2026.html">
 
-    <section class="brief-section">
-      <h2>Creator Hooks</h2>
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Zelvra">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:url" content="https://zelvra.tech/sample-nflx-q2-2026.html">
+    <meta property="og:title" content="Netflix Q2 2026 Earnings Brief | Zelvra">
+    <meta
+      property="og:description"
+      content="Netflix beat on EPS, missed revenue by 0.25%, and fell 9% after hours. The real story is in the Q3 margin guide. A source-backed Zelvra brief, built overnight."
+    >
+    <meta property="og:image" content="https://zelvra.tech/assets/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Zelvra Netflix Q2 2026 earnings research brief.">
 
-      <div class="hook">
-        <p class="hook-label">Hook A — The guidance story (stock -9%)</p>
-        <blockquote>
-          Netflix beat Q2. Shares fell 9%. That gap tells you everything about where the market's attention actually is — and it's not on last quarter's revenue.
-        </blockquote>
-      </div>
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Netflix Q2 2026 Earnings Brief | Zelvra">
+    <meta name="twitter:description" content="Netflix beat on EPS, missed revenue by 0.25%, and fell 9% after hours. The real story is in the Q3 margin guide. A source-backed Zelvra brief, built overnight.">
+    <meta name="twitter:image" content="https://zelvra.tech/assets/og-image.png">
 
-      <div class="hook">
-        <p class="hook-label">Hook B — The subscriber number they stopped reporting</p>
-        <blockquote>
-          Netflix has 325 million subscribers. They stopped reporting how many they added this quarter. When a company stops disclosing a number it used to lead every earnings call with, that's worth a paragraph in your next issue.
-        </blockquote>
-      </div>
+    <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="./assets/favicon.svg">
+    <link rel="manifest" href="./site.webmanifest">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body class="brief-page">
+    <div class="read-progress" aria-hidden="true"><span id="read-progress-bar"></span></div>
 
-      <div class="hook">
-        <p class="hook-label">Hook C — The ad tier angle</p>
-        <blockquote>
-          Netflix's ad-supported tier now reaches 250 million monthly active viewers. Ad revenue is on track for $3 billion this year — double last year. The company that spent a decade refusing ads just built one of the largest ad platforms on the internet.
-        </blockquote>
-      </div>
+    <header class="site-header">
+      <a class="brand" href="./index.html" aria-label="Zelvra home">
+        <img class="brand-mark" src="./assets/zelvra-mark.svg" alt="" aria-hidden="true">
+        <span>Zelvra</span>
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+        <span class="sr-only">Toggle navigation</span>
+        <span></span>
+        <span></span>
+      </button>
+      <nav class="site-nav" id="site-nav" aria-label="Primary navigation">
+        <a href="./index.html#what-we-do">What we do</a>
+        <a href="./index.html#sample">Samples</a>
+        <a href="./index.html#about">About</a>
+        <a href="./index.html#pricing">Pricing</a>
+        <a href="./index.html#contact">Contact</a>
+      </nav>
+      <a class="header-cta" href="mailto:hello@zelvra.tech?subject=Request%20a%20brief&body=Hi%20Zelvra%2C%0A%0AI'd%20like%20to%20request%20a%20brief.%0A%0ACompany%20or%20ticker%3A%0ASource%20material%20or%20link%3A%0ADesired%20output%3A%0ADeadline%3A%0A%0AThanks%2C">Request a brief</a>
+    </header>
 
-      <div class="hook">
-        <p class="hook-label">Hook D — Revenue deceleration framing</p>
-        <blockquote>
-          Netflix grew revenue 16% in Q1. It grew 13% in Q2. It's guiding to 12% in Q3. The direction is clear. The question for creators covering this story: is this a new normal, or the floor before re-acceleration?
-        </blockquote>
-      </div>
-    </section>
-
-    <section class="brief-section">
-      <h2>One-Paragraph Summary</h2>
-      <p>
-        Netflix reported Q2 2026 revenue of $12.56 billion, up 13.4% year over year, marginally below the $12.59 billion Wall Street consensus. Diluted EPS of $0.80 edged past the $0.79 estimate and grew 11% from $0.72 in Q2 2025. Net income came in at $3.40 billion. Operating income was $4.2 billion, up 11% year over year, but operating margin compressed slightly to 33.4% from 34.1% a year ago. The company no longer reports paid net subscriber additions — global membership stands at 325 million. The ad-supported tier reached 250 million monthly active viewers worldwide, and full-year ad revenue remains on track for approximately $3 billion, roughly double 2025 levels. For Q3, Netflix guided to 12% revenue growth and a 33.2% operating margin — the latter actually a significant improvement from 28.2% in Q3 2025. Shares fell approximately 9% after hours, hitting a 52-week low, as the market focused on the slight revenue miss and decelerating top-line growth trajectory rather than the margin improvement embedded in guidance.
-      </p>
-    </section>
-
-    <section class="brief-section">
-      <h2>The 5 Numbers That Matter</h2>
-
-      <div class="number-block">
-        <h3>1. Revenue — $12.56 billion</h3>
-        <ul>
-          <li><strong>YoY change:</strong> +13.4% (from $11.08B in Q2 2025)</li>
-          <li><strong>vs. consensus:</strong> $12.56B vs. $12.59B estimate (miss of ~$30M, ~0.25%)</li>
-          <li><strong>Context:</strong> Growth has decelerated from 16.2% in Q1 2026 to 13.4% in Q2. Q3 guidance implies further deceleration to ~12%. EMEA crossed $4.0B quarterly for the first time. LATAM and APAC each crossed $1.5B. All regions grew double digits.</li>
-          <li><strong>Source:</strong> Netflix Q2 2026 Earnings Press Release / Shareholder Letter, ir.netflix.net; CNBC Q2 2026 earnings coverage</li>
-        </ul>
-      </div>
-
-      <div class="number-block">
-        <h3>2. EPS — $0.80 diluted (non-GAAP basis comparable)</h3>
-        <ul>
-          <li><strong>YoY change:</strong> +11.1% (from $0.72 in Q2 2025)</li>
-          <li><strong>vs. consensus:</strong> $0.80 vs. $0.79 estimate (beat)</li>
-          <li><strong>Net income:</strong> $3.40 billion vs. $3.13 billion in Q2 2025 (+8.6% YoY)</li>
-          <li><strong>Note:</strong> No one-time items of the scale seen in Q1 2026 ($2.8B Warner Bros. termination fee). This is a cleaner quarter operationally.</li>
-          <li><strong>Source:</strong> Netflix Q2 2026 Earnings Press Release, ir.netflix.net; Investing.com earnings call transcript summary</li>
-        </ul>
-      </div>
-
-      <div class="number-block">
-        <h3>3. Operating Margin — 33.4%</h3>
-        <ul>
-          <li><strong>YoY change:</strong> -70 bps (from 34.1% in Q2 2025)</li>
-          <li><strong>Operating income:</strong> $4.2 billion (+11% YoY)</li>
-          <li><strong>Q3 guide:</strong> 33.2% operating margin — a 500 bps improvement vs. Q3 2025's 28.2%</li>
-          <li><strong>Context:</strong> Slight compression in Q2, but the Q3 margin guide is the more important number. A 5-point YoY margin improvement in Q3 would represent significant operating leverage kicking in even as revenue growth slows.</li>
-          <li><strong>Source:</strong> Netflix Q2 2026 Shareholder Letter, ir.netflix.net; The Wrap Q2 2026 earnings coverage</li>
-        </ul>
-      </div>
-
-      <div class="number-block">
-        <h3>4. Ad Tier — 250 million monthly active viewers</h3>
-        <ul>
-          <li><strong>Context:</strong> Disclosed at Netflix's May 2026 Upfront presentation. Netflix does not break out ad revenue separately by quarter but confirmed full-year 2026 ad revenue remains on track for ~$3 billion, approximately 2x 2025 levels.</li>
-          <li><strong>Why it matters:</strong> 250 million MAUs on an ad-supported tier is a larger advertising reach than most traditional TV networks. For finance creators covering the streaming or digital advertising space, this is the structural story inside the earnings report.</li>
-          <li><strong>Source:</strong> Netflix May 2026 Upfront presentation; Deadline Q2 2026 earnings coverage</li>
-        </ul>
-      </div>
-
-      <div class="number-block">
-        <h3>5. Q3 2026 Revenue Guidance — 12% growth (~$13.0B implied)</h3>
-        <ul>
-          <li><strong>Full-year guidance (narrowed):</strong> $51.0B–$51.4B (from $50.7B–$51.7B previously)</li>
-          <li><strong>Context:</strong> Netflix narrowed its full-year range while keeping the midpoint roughly flat. The Q3 guide implies another sequential deceleration from Q2's 13.4%. This — not the Q2 number — is what sent the stock down 9% after hours. Markets were pricing in either re-acceleration or a more constructive guide.</li>
-          <li><strong>Source:</strong> Netflix Q2 2026 Shareholder Letter, ir.netflix.net; Variety Q2 2026 earnings coverage</li>
-        </ul>
-      </div>
-    </section>
-
-    <section class="brief-section">
-      <h2>Bull Case vs. Bear Case</h2>
-      <div class="bull-bear">
-        <div class="bull">
-          <h3>Bull Case</h3>
-          <ul>
-            <li>Q3 operating margin guide of 33.2% is 500 bps above Q3 2025 — profit growing faster than revenue is the definition of operating leverage</li>
-            <li>Ad business reaching $3B in 2026 (2x YoY) with 250M MAUs creates a second revenue engine that was nonexistent three years ago</li>
-            <li>Double-digit growth in all four geographic segments — this is not a one-region story</li>
-            <li>Full-year guidance narrowed, not lowered — the range is tighter, not worse</li>
-            <li>Content amortization growth expected to peak in Q2 and decelerate in H2 — cost structure improving into year-end</li>
-          </ul>
+    <main id="top">
+      <section class="section-shell brief-hero" aria-labelledby="brief-title">
+        <p class="eyebrow">Real sample brief &middot; NASDAQ: NFLX &middot; This week's print</p>
+        <h1 id="brief-title">Netflix Q2 2026 research brief</h1>
+        <p class="brief-lead">
+          Built overnight from Netflix's Q2 2026 shareholder letter, press release, and earnings call — delivered
+          the morning after the print. This is the exact format Week Pass subscribers receive: the numbers that
+          matter, what changed, a publish-ready X thread, and a full source list, every figure tied back to a
+          filing line.
+        </p>
+        <dl class="brief-facts" aria-label="Brief details">
+          <div><dt>Company</dt><dd>Netflix, Inc. (NASDAQ: NFLX)</dd></div>
+          <div><dt>Quarter ended</dt><dd>June 30, 2026</dd></div>
+          <div><dt>Reported</dt><dd>July 16, 2026, after US close</dd></div>
+          <div><dt>Source packet</dt><dd>Shareholder letter, press release, earnings call</dd></div>
+        </dl>
+        <div class="hero-actions" aria-label="Primary actions">
+          <a class="button button-primary" href="mailto:hello@zelvra.tech?subject=Earnings%20Week%20Pass&body=Hi%20Zelvra%2C%0A%0AI%20want%20the%20%2499%20Earnings%20Week%20Pass.%0A%0APublication%20or%20handle%3A%0APreferred%20delivery%20email%3A%0A%0AThanks%2C">Get the $99 Week Pass</a>
+          <a class="button button-secondary" href="./index.html#process">See how it works</a>
         </div>
-        <div class="bear">
-          <h3>Bear Case</h3>
-          <ul>
-            <li>Revenue growth trajectory: 16% (Q1) → 13% (Q2) → 12% guided (Q3) — three consecutive quarters of deceleration</li>
-            <li>Stopped reporting net paid subscriber additions — the metric that drove the stock for a decade is gone; market has less visibility into demand</li>
-            <li>Slight revenue miss vs. consensus — even by $30M — on a stock that was pricing in a beat</li>
-            <li>H1 2026 viewing hours: 97 billion, up only 2% YoY — engagement growth is modest despite subscriber base expansion</li>
-            <li>Stock hit a 52-week low on the print — technical deterioration matters for sentiment-driven assets</li>
-          </ul>
-        </div>
+      </section>
+
+      <div class="section-shell brief-layout">
+        <aside class="brief-toc" aria-label="On this page">
+          <p class="toc-title">On this page</p>
+          <nav id="brief-toc-nav">
+            <a href="#summary">Summary</a>
+            <a href="#numbers">5 numbers that matter</a>
+            <a href="#hook">Creator hooks</a>
+            <a href="#changed">What changed</a>
+            <a href="#narrative">Bull, bear &amp; overlooked</a>
+            <a href="#thread">Publish-ready X thread</a>
+            <a href="#newsletter">Newsletter section</a>
+            <a href="#youtube">YouTube talking points</a>
+            <a href="#sources">Source list</a>
+            <a href="#compliance">Compliance &amp; disclaimer</a>
+          </nav>
+        </aside>
+
+        <article class="brief-main">
+          <!-- SUMMARY -->
+          <section class="brief-block" id="summary" aria-labelledby="summary-title">
+            <p class="section-kicker">The quarter in one paragraph</p>
+            <h2 id="summary-title">Summary</h2>
+            <div class="summary-card">
+              <p>
+                Netflix reported Q2 2026 revenue of <strong>$12.56 billion</strong>, up 13.4% year over year but
+                marginally below the $12.59 billion consensus. Diluted EPS of <strong>$0.80</strong> edged past
+                the $0.79 estimate, up 11% from $0.72 in Q2 2025, with net income of $3.40 billion. Operating
+                income was $4.2 billion, up 11%, though operating margin compressed slightly to
+                <strong>33.4%</strong> from 34.1% a year ago. Netflix no longer reports paid net subscriber
+                additions — global membership stands at <strong>325 million</strong>. The ad-supported tier
+                reached <strong>250 million monthly active viewers</strong>, and full-year ad revenue remains on
+                track for roughly <strong>$3 billion</strong>, about double 2025 levels. For Q3, Netflix guided to
+                12% revenue growth and a 33.2% operating margin — the latter a roughly 500 basis point improvement
+                over Q3 2025's 28.2% — and narrowed full-year revenue guidance to $51.0&ndash;$51.4 billion.
+                Shares fell approximately 9% after hours to a 52-week low as the market focused on the small
+                revenue miss and the third consecutive quarter of decelerating top-line growth rather than the
+                margin improvement embedded in guidance.
+              </p>
+            </div>
+          </section>
+
+          <!-- 5 NUMBERS -->
+          <section class="brief-block" id="numbers" aria-labelledby="numbers-title">
+            <p class="section-kicker">The headline read</p>
+            <h2 id="numbers-title">The 5 numbers that matter</h2>
+            <p class="brief-block-lead">
+              The figures that frame the quarter. Each one is pulled from the shareholder letter or press release
+              and mapped to its source line in the source list below.
+            </p>
+            <div class="kpi-grid">
+              <div class="kpi-card">
+                <p class="kpi-label">Total revenue</p>
+                <p class="kpi-value">$12.56B</p>
+                <p class="kpi-sub">+13.4% YoY &middot; vs $12.59B est &middot; miss of ~$30M (~0.25%)</p>
+              </div>
+              <div class="kpi-card">
+                <p class="kpi-label">Diluted EPS</p>
+                <p class="kpi-value">$0.80</p>
+                <p class="kpi-sub">+11.1% YoY &middot; beat $0.79 est &middot; net income $3.40B</p>
+              </div>
+              <div class="kpi-card">
+                <p class="kpi-label">Operating margin</p>
+                <p class="kpi-value">33.4%</p>
+                <p class="kpi-sub">-70 bps YoY &middot; operating income $4.2B (+11%)</p>
+              </div>
+              <div class="kpi-card">
+                <p class="kpi-label">Ad tier reach</p>
+                <p class="kpi-value">250M MAUs</p>
+                <p class="kpi-sub">~$3B FY26 ad revenue on track &middot; ~2x 2025</p>
+              </div>
+              <div class="kpi-card kpi-card-wide">
+                <p class="kpi-label">Q3 2026 guidance</p>
+                <p class="kpi-value">+12% <span class="kpi-pm">revenue &middot; 33.2% op margin</span></p>
+                <p class="kpi-sub">~$13.0B implied &middot; margin +500 bps vs Q3 2025's 28.2% &middot; FY26 revenue narrowed to $51.0&ndash;$51.4B</p>
+              </div>
+            </div>
+
+            <div class="num-detail-stack">
+              <div class="info-block">
+                <h3>1 &middot; Revenue — $12.56B</h3>
+                <p>
+                  Growth decelerated from 16.2% in Q1 to 13.4% in Q2, with Q3 guided to ~12%. The miss was ~$30
+                  million on a $12.5 billion quarter — 0.25%, irrelevant in isolation, but the market read it
+                  against the deceleration trend. EMEA crossed $4.0B in quarterly revenue for the first time;
+                  LATAM and APAC each crossed $1.5B; all four regions grew double digits.
+                </p>
+                <p class="source-cite">Source: Netflix Q2 2026 Shareholder Letter &amp; Press Release (ir.netflix.net); consensus via CNBC (secondary).</p>
+              </div>
+              <div class="info-block">
+                <h3>2 &middot; Diluted EPS — $0.80</h3>
+                <p>
+                  A clean beat with no one-time items of the scale seen in Q1 2026 (the $2.8B Warner Bros.
+                  termination fee). Net income of $3.40 billion grew 8.6% year over year. Operationally this was a
+                  tidier quarter than Q1 — which is partly why the market's reaction traced to guidance, not
+                  results.
+                </p>
+                <p class="source-cite">Source: Netflix Q2 2026 Press Release (ir.netflix.net); earnings call transcript.</p>
+              </div>
+              <div class="info-block">
+                <h3>3 &middot; Operating margin — 33.4%</h3>
+                <p>
+                  Down 70 bps year over year, and the least important margin number in the report. The Q3 guide of
+                  33.2% against Q3 2025's 28.2% is the one that matters: a ~500 basis point year-over-year
+                  improvement implies real operating leverage arriving exactly as revenue growth slows. Content
+                  amortization growth was characterized as peaking in Q2 and decelerating through H2.
+                </p>
+                <p class="source-cite">Source: Netflix Q2 2026 Shareholder Letter (ir.netflix.net); earnings call commentary.</p>
+              </div>
+              <div class="info-block">
+                <h3>4 &middot; Ad tier — 250M monthly active viewers</h3>
+                <p>
+                  Disclosed at the May 2026 Upfront and reiterated in context this quarter: ad revenue remains on
+                  track for ~$3 billion in 2026, roughly double 2025. Netflix does not break out quarterly ad
+                  revenue, but 250M MAUs is larger advertising reach than most traditional TV networks — the
+                  structural story sitting inside a report the market judged on deceleration.
+                </p>
+                <p class="source-cite">Source: Netflix May 2026 Upfront presentation; Q2 2026 earnings call commentary.</p>
+              </div>
+              <div class="info-block">
+                <h3>5 &middot; Q3 guidance — 12% revenue growth, 33.2% operating margin</h3>
+                <p>
+                  The number that moved the stock. Netflix narrowed full-year revenue guidance to
+                  $51.0&ndash;$51.4B (from $50.7&ndash;$51.7B) with the midpoint roughly flat. Q3's implied ~$13.0B
+                  continues the sequential deceleration — 16% &rarr; 13% &rarr; 12% — and the market was pricing
+                  in either re-acceleration or a more constructive guide. It got neither, and shares fell ~9%
+                  after hours.
+                </p>
+                <p class="source-cite">Source: Netflix Q2 2026 Shareholder Letter (ir.netflix.net); market reaction via Variety/Deadline (secondary).</p>
+              </div>
+            </div>
+          </section>
+
+          <!-- HOOKS -->
+          <section class="brief-block" id="hook" aria-labelledby="hook-title">
+            <p class="section-kicker">Lead with one of these</p>
+            <h2 id="hook-title">Creator hooks</h2>
+            <p class="brief-block-lead">Four ready-to-use openers, each built on a different angle of the quarter.</p>
+            <div class="hook-grid">
+              <div class="hook-card">
+                <span class="hook-tag">Hook A &middot; The guidance story</span>
+                <p>
+                  Netflix beat Q2 on EPS. Shares fell 9%. That gap tells you everything about where the market's
+                  attention actually is — and it's not on last quarter's revenue.
+                </p>
+              </div>
+              <div class="hook-card">
+                <span class="hook-tag">Hook B &middot; The number they stopped reporting</span>
+                <p>
+                  Netflix has 325 million subscribers. They stopped reporting how many they added this quarter.
+                  When a company retires the metric that led every earnings call for a decade, that's worth a
+                  paragraph in your next issue.
+                </p>
+              </div>
+              <div class="hook-card">
+                <span class="hook-tag">Hook C &middot; The ad tier angle</span>
+                <p>
+                  Netflix's ad-supported tier now reaches 250 million monthly viewers, with ad revenue tracking to
+                  $3 billion this year — double last year. The company that spent a decade refusing ads just built
+                  one of the largest ad platforms on the internet.
+                </p>
+              </div>
+              <div class="hook-card">
+                <span class="hook-tag">Hook D &middot; Deceleration framing</span>
+                <p>
+                  Netflix grew revenue 16% in Q1, 13% in Q2, and is guiding 12% for Q3. The direction is clear.
+                  The question worth writing about: is this the new normal, or the floor before re-acceleration?
+                </p>
+              </div>
+            </div>
+          </section>
+
+          <!-- WHAT CHANGED -->
+          <section class="brief-block" id="changed" aria-labelledby="changed-title">
+            <p class="section-kicker">Quarter over quarter</p>
+            <h2 id="changed-title">What changed</h2>
+            <div class="changed-stack">
+              <div class="info-block">
+                <h3>Growth — third consecutive quarter of deceleration</h3>
+                <p>
+                  16.2% in Q1 2026, 13.4% in Q2, ~12% guided for Q3. Not a collapse — every region still grew
+                  double digits — but the trajectory, not the level, is what the market repriced.
+                </p>
+              </div>
+              <div class="info-block">
+                <h3>Disclosure — subscriber additions are gone</h3>
+                <p>
+                  This is the first full quarter with no paid net additions figure. Membership is disclosed as a
+                  point-in-time 325 million. Demand visibility now runs through revenue, engagement hours, and ad
+                  MAUs — a deliberate re-anchoring of the story from subscriber counts to monetization.
+                </p>
+              </div>
+              <div class="info-block">
+                <h3>Margins — Q2 dipped, Q3 guide jumped</h3>
+                <p>
+                  Q2 operating margin of 33.4% was down 70 bps year over year, but Q3 is guided to 33.2% against
+                  28.2% in Q3 2025 — a ~500 bps improvement. Content amortization growth was described as peaking
+                  in Q2 and decelerating through H2, which supports the margin path into year-end.
+                </p>
+              </div>
+              <div class="info-block">
+                <h3>Guidance — narrowed, not lowered</h3>
+                <p>
+                  Full-year revenue guidance tightened to $51.0&ndash;$51.4B from $50.7&ndash;$51.7B, midpoint
+                  roughly unchanged. The range compressed; the outlook did not deteriorate — a distinction most
+                  headline coverage skipped.
+                </p>
+              </div>
+              <div class="info-block">
+                <h3>Engagement — modest growth on a bigger base</h3>
+                <p>
+                  H1 2026 viewing totaled 97 billion hours, up about 2% year over year. Engagement is growing far
+                  slower than revenue — monetization per hour, via pricing and advertising, is doing the work.
+                </p>
+              </div>
+              <div class="info-block">
+                <h3>Regions — EMEA crossed $4B for the first time</h3>
+                <p>
+                  EMEA passed $4.0B in quarterly revenue; LATAM and APAC each crossed $1.5B. All four regions grew
+                  double digits, keeping this a broad-based rather than single-region story.
+                </p>
+              </div>
+            </div>
+          </section>
+
+          <!-- NARRATIVE -->
+          <section class="brief-block" id="narrative" aria-labelledby="narrative-title">
+            <p class="section-kicker">The two reads — and the one most people skip</p>
+            <h2 id="narrative-title">Bull, bear &amp; overlooked</h2>
+            <div class="lens-grid">
+              <div class="lens-card lens-bull">
+                <h3>Bull read</h3>
+                <ul class="lens-list">
+                  <li><strong>The Q3 margin guide is the definition of operating leverage.</strong> 33.2% guided against 28.2% a year ago means profit is set to grow faster than revenue even as the top line slows.</li>
+                  <li><strong>The ad business is a second engine that barely existed three years ago.</strong> 250M MAUs and ~$3B in 2026 ad revenue, doubling year over year, with pricing power still early.</li>
+                  <li><strong>Guidance was narrowed, not cut.</strong> A tighter range around an unchanged midpoint, with double-digit growth in all four regions and content costs past their peak growth rate.</li>
+                </ul>
+              </div>
+              <div class="lens-card lens-bear">
+                <h3>Bear read</h3>
+                <ul class="lens-list">
+                  <li><strong>Three straight quarters of deceleration.</strong> 16% &rarr; 13% &rarr; 12% guided, and the market has no subscriber-adds metric left to check the trajectory against.</li>
+                  <li><strong>Engagement is nearly flat.</strong> 97 billion H1 hours, up only ~2% — revenue growth is being manufactured from price and ads, not from people watching more.</li>
+                  <li><strong>A 52-week low on a beat quarter is a sentiment signal.</strong> When a 0.25% revenue miss produces a 9% drawdown, the multiple was priced for perfection.</li>
+                </ul>
+              </div>
+            </div>
+            <div class="miss-card">
+              <p class="miss-tag">What everyone might miss</p>
+              <h3>The market sold the deceleration and skipped the margin inflection</h3>
+              <p>
+                Nearly all coverage led with the growth slowdown and the after-hours drop. The Q3 operating margin
+                guide — 33.2% versus 28.2% a year earlier — was treated as a footnote. A ~500 basis point
+                year-over-year margin improvement, guided in advance, alongside content amortization growth
+                peaking, is the profile of a company shifting from growth-at-any-cost to cash compounding.
+              </p>
+              <p>
+                The angle for a newsletter or thread is not &ldquo;Netflix fell 9%.&rdquo; It is: &ldquo;the market
+                repriced Netflix on a metric Netflix no longer reports, while ignoring the one management actually
+                guided up.&rdquo; That tension — deceleration versus operating leverage — is the debate worth
+                owning this cycle.
+              </p>
+            </div>
+          </section>
+
+          <!-- X THREAD -->
+          <section class="brief-block" id="thread" aria-labelledby="thread-title">
+            <div class="block-head-row">
+              <div>
+                <p class="section-kicker">Publish-ready</p>
+                <h2 id="thread-title">X / Twitter thread</h2>
+              </div>
+              <button class="copy-thread-button" type="button" id="copy-thread" data-copy-target="x-thread">
+                Copy X thread
+              </button>
+            </div>
+            <p class="brief-block-lead">
+              Drop-in ready. Seven posts, sourced from the same numbers above. Use the button to copy the full
+              thread to your clipboard.
+            </p>
+            <ol class="thread" id="x-thread">
+              <li class="tweet"><p>Netflix Q2 2026: $12.56B revenue (+13% YoY), $0.80 EPS. Shares -9% after hours.
+The number the market cared about wasn't in Q2 — it was the Q3 guide.
+Here's the brief:</p></li>
+              <li class="tweet"><p>Revenue: $12.56B vs $12.59B expected.
+A miss of ~$30M on a $12.5B quarter — 0.25% below consensus.
+In isolation: irrelevant.
+In the context of decelerating growth, the market made it the story.</p></li>
+              <li class="tweet"><p>The growth trajectory:
+Q1 2026: +16%
+Q2 2026: +13%
+Q3 2026 guided: +12%
+Three consecutive quarters of deceleration. Not a collapse — but the direction is the concern.</p></li>
+              <li class="tweet"><p>The number Netflix no longer reports: net paid subscriber additions.
+They have 325M members globally. Whether that grew 5M or 15M this quarter — they're not saying.
+That's a deliberate choice, and worth noting.</p></li>
+              <li class="tweet"><p>The real growth story inside this report: advertising.
+250M monthly active viewers on the ad tier.
+~$3B in 2026 ad revenue expected — 2x last year.
+Netflix is now one of the largest ad-supported video platforms in the world.</p></li>
+              <li class="tweet"><p>Operating margin: 33.4% in Q2 (vs 34.1% a year ago).
+But Q3 is guided at 33.2% — that's ~500 bps ABOVE Q3 2025's 28.2%.
+Profit growing faster than revenue. That's the chart that matters long-term.</p></li>
+              <li class="tweet"><p>All figures from Netflix's Q2 2026 shareholder letter and press release (ir.netflix.net).
+Research content only — not investment advice.
+Full sourced brief: zelvra.tech</p></li>
+            </ol>
+            <p class="copy-thread-status" id="copy-thread-status" role="status" aria-live="polite"></p>
+          </section>
+
+          <!-- NEWSLETTER -->
+          <section class="brief-block" id="newsletter" aria-labelledby="newsletter-title">
+            <p class="section-kicker">Drop into your send</p>
+            <h2 id="newsletter-title">Newsletter section</h2>
+            <div class="newsletter-card">
+              <h3>Netflix Q2 2026: The Market Repriced a Metric Netflix No Longer Reports</h3>
+              <p>
+                Netflix reported $12.56 billion in Q2 revenue, up 13% year over year but about $30 million short of
+                consensus — a 0.25% miss. EPS of $0.80 beat estimates, and net income reached $3.40 billion. Shares
+                still fell roughly 9% after hours to a 52-week low, because the market's attention was on
+                trajectory, not results: growth has slowed from 16% in Q1 to 13% in Q2, with Q3 guided at 12%.
+              </p>
+              <p>
+                Two things complicate the bearish read. First, the Q3 operating margin guide of 33.2% sits roughly
+                500 basis points above Q3 2025's 28.2% — profit is set to grow meaningfully faster than revenue,
+                with content amortization growth described as peaking in Q2 and easing through the second half.
+                Second, the advertising business keeps scaling: 250 million monthly active viewers on the
+                ad-supported tier and roughly $3 billion in 2026 ad revenue, about double last year. Netflix also
+                narrowed full-year revenue guidance to $51.0&ndash;$51.4 billion around an unchanged midpoint —
+                tightened, not cut.
+              </p>
+              <p>
+                The structural note: this was the first full quarter without a reported subscriber-additions
+                figure. Membership stands at 325 million, and the company now wants to be judged on revenue,
+                margins, and ad reach. The market, for one afternoon at least, judged it on the metric it no longer
+                publishes. All figures sourced to Netflix's Q2 2026 shareholder letter and press release
+                (ir.netflix.net). Research content only — not investment advice.
+              </p>
+            </div>
+          </section>
+
+          <!-- YOUTUBE (collapsible) -->
+          <section class="brief-block" id="youtube" aria-labelledby="youtube-title">
+            <p class="section-kicker">For the script</p>
+            <h2 id="youtube-title">YouTube talking points</h2>
+            <details class="collapsible" open>
+              <summary>
+                <span class="summary-label">Seven talking points, in script order</span>
+                <span class="summary-icon" aria-hidden="true"></span>
+              </summary>
+              <div class="collapsible-body">
+                <ul class="talking-points">
+                  <li><strong>1 &middot; Open with the contradiction.</strong> &ldquo;Netflix beat on earnings. The stock fell 9% to a 52-week low. Here's the disconnect — and what the market was actually reacting to.&rdquo;</li>
+                  <li><strong>2 &middot; The deceleration chart.</strong> Show 16% &rarr; 13% &rarr; 12% guided. Three quarters, one direction. Ask whether this is maturity or a pause.</li>
+                  <li><strong>3 &middot; The retired metric.</strong> No more subscriber-additions disclosure; 325M members as a point-in-time number. Explain why companies retire metrics and what it signals about the story management wants told.</li>
+                  <li><strong>4 &middot; The ad platform nobody prices.</strong> 250M MAUs, ~$3B ad revenue doubling year over year. Compare that reach to traditional TV networks on screen.</li>
+                  <li><strong>5 &middot; The margin inflection the coverage skipped.</strong> Q3 guided at 33.2% vs 28.2% last year. Walk through operating leverage in plain language: revenue slows, profit accelerates.</li>
+                  <li><strong>6 &middot; Engagement vs monetization.</strong> 97B H1 viewing hours, up only ~2%, against 13% revenue growth. Pricing and ads, not watch time, are carrying growth — discuss how long that can run.</li>
+                  <li><strong>7 &middot; Close on the reframe.</strong> The market repriced Netflix on a number it no longer reports and ignored the one management guided up. End with the Q3 checklist: margin delivery, ad commentary, and whether deceleration finds a floor at 12%.</li>
+                </ul>
+              </div>
+            </details>
+          </section>
+
+          <!-- SOURCES (collapsible) -->
+          <section class="brief-block" id="sources" aria-labelledby="sources-title">
+            <p class="section-kicker">Checkable</p>
+            <h2 id="sources-title">Source list</h2>
+            <p class="brief-block-lead">
+              Every number above ties back to a specific line in Netflix's own materials. Expand to see each claim
+              mapped to its source.
+            </p>
+            <details class="collapsible">
+              <summary>
+                <span class="summary-label">Primary sources (3)</span>
+                <span class="summary-icon" aria-hidden="true"></span>
+              </summary>
+              <div class="collapsible-body">
+                <ol class="source-list">
+                  <li>
+                    <span class="source-claim">Netflix Q2 2026 Shareholder Letter &amp; Press Release (Form 8-K)</span>
+                    <span class="source-ref">Netflix IR / SEC EDGAR, filed July 16, 2026 &mdash; <a target="_blank" rel="noopener noreferrer" href="https://ir.netflix.net/financials/quarterly-earnings/default.aspx">ir.netflix.net/&hellip;/quarterly-earnings</a></span>
+                    <span class="source-ref">Supports: revenue, EPS, net income, operating income and margin, regional revenue, Q3 guidance, full-year guidance range, membership figure.</span>
+                  </li>
+                  <li>
+                    <span class="source-claim">Netflix Q2 2026 Earnings Call (July 16, 2026)</span>
+                    <span class="source-ref">Netflix IR video interview / public transcript</span>
+                    <span class="source-ref">Supports: ad revenue on-track commentary, content amortization trajectory, guidance characterization.</span>
+                  </li>
+                  <li>
+                    <span class="source-claim">Netflix May 2026 Upfront Presentation</span>
+                    <span class="source-ref">Netflix corporate announcements</span>
+                    <span class="source-ref">Supports: 250 million monthly active viewers on the ad-supported tier.</span>
+                  </li>
+                </ol>
+              </div>
+            </details>
+            <details class="collapsible">
+              <summary>
+                <span class="summary-label">Secondary sources (2) — consensus &amp; market reaction only</span>
+                <span class="summary-icon" aria-hidden="true"></span>
+              </summary>
+              <div class="collapsible-body">
+                <ol class="source-list" start="4">
+                  <li>
+                    <span class="source-claim">CNBC Q2 2026 Netflix earnings coverage (July 16, 2026)</span>
+                    <span class="source-ref">Supports: $12.59B revenue consensus and $0.79 EPS consensus used for beat/miss calculations.</span>
+                  </li>
+                  <li>
+                    <span class="source-claim">Variety / Deadline / Hollywood Reporter earnings coverage (July 16, 2026)</span>
+                    <span class="source-ref">Supports: after-hours stock reaction (~-9%) and 52-week low characterization.</span>
+                  </li>
+                </ol>
+              </div>
+            </details>
+          </section>
+
+          <!-- COMPLIANCE + DISCLAIMER -->
+          <section class="brief-block brief-disclaimer-block" id="compliance" aria-labelledby="compliance-title">
+            <p class="section-kicker">How we keep it clean</p>
+            <h2 id="compliance-title">Compliance &amp; disclaimer</h2>
+            <details class="collapsible">
+              <summary>
+                <span class="summary-label">Compliance check</span>
+                <span class="summary-icon" aria-hidden="true"></span>
+              </summary>
+              <div class="collapsible-body">
+                <ul class="talking-points">
+                  <li><strong>Investment-advice language:</strong> no buy/sell language, price targets, or &ldquo;stock will&rdquo; framing. Bull and bear reads are framed in business data, not positions.</li>
+                  <li><strong>Sourcing:</strong> all key financial figures tie to Netflix primary materials; secondary sources are used only for consensus and market reaction, and labeled as such.</li>
+                  <li><strong>Unreported metrics:</strong> subscriber-addition commentary states only what Netflix disclosed (325M members) and explicitly notes what is no longer reported, without estimating it.</li>
+                </ul>
+              </div>
+            </details>
+            <p class="brief-disclaimer">
+              Zelvra provides research and content support only. We do not provide investment advice, price
+              targets, trading signals, or buy/sell recommendations. This brief is based on publicly available
+              company materials; figures should be verified against the primary source before publication.
+            </p>
+            <div class="brief-cta">
+              <h3>This brief was in inboxes the morning after the print.</h3>
+              <p>Six more prints this season: <strong>$99 Week Pass</strong> — GOOGL + TSLA (Jul 22), MSFT + META (Jul 29), AMZN + AAPL (Jul 30), each delivered the morning after, source-tagged like this one. Or $50 per single brief, $180/mo for four. Payment by invoice (PayPal).</p>
+              <div class="offer-actions">
+                <a class="button button-primary" href="mailto:hello@zelvra.tech?subject=Earnings%20Week%20Pass&body=Hi%20Zelvra%2C%0A%0AI%20want%20the%20%2499%20Earnings%20Week%20Pass.%0A%0APublication%20or%20handle%3A%0APreferred%20delivery%20email%3A%0A%0AThanks%2C">Get the $99 Week Pass</a>
+                <a class="button button-secondary" href="mailto:hello@zelvra.tech?subject=Request%20a%20brief&body=Hi%20Zelvra%2C%0A%0AI'd%20like%20to%20request%20a%20brief.%0A%0ACompany%20or%20ticker%3A%0ASource%20material%20or%20link%3A%0ADesired%20output%3A%0ADeadline%3A%0A%0AThanks%2C">Request a free sample brief</a>
+              </div>
+            </div>
+          </section>
+        </article>
       </div>
-    </section>
+    </main>
 
-    <section class="brief-section">
-      <h2>X Thread (Copy-Ready)</h2>
-      <div class="thread">
-        <p class="tweet">1/ Netflix Q2 2026: $12.56B revenue (+13% YoY), $0.80 EPS. Shares -9% after hours. The number the market cared about wasn't in Q2 — it was the Q3 guide. Here's the brief. 🧵</p>
-        <p class="tweet">2/ Revenue: $12.56B vs. $12.59B estimate. Miss of about $30M on a $12.5B quarter. That's 0.25% below consensus. In isolation: irrelevant. In the context of decelerating growth, the market made it the story.</p>
-        <p class="tweet">3/ Growth trajectory: Q1 2026 +16% → Q2 2026 +13% → Q3 2026 guided at +12%. Three consecutive quarters of deceleration. Not a collapse — but the direction is the concern.</p>
-        <p class="tweet">4/ The number Netflix no longer reports: net paid subscriber additions. They have 325M members globally. Whether that grew 5M or 15M this quarter — they're not saying. That's a deliberate choice, and worth noting.</p>
-        <p class="tweet">5/ The ad business is the real growth story inside this report. 250M monthly active viewers on the ad tier. $3B in ad revenue expected for 2026 — 2x last year. Netflix is now one of the largest ad-supported video platforms in the world.</p>
-        <p class="tweet">6/ Operating margin: 33.4% in Q2 (vs. 34.1% a year ago). Q3 guided at 33.2% — which is 500 basis points above Q3 2025's 28.2%. Profit is growing faster than revenue. That's the chart that matters long-term.</p>
-        <p class="tweet">7/ All figures from Netflix's Q2 2026 shareholder letter and press release (ir.netflix.net). Research content only — not investment advice. Full brief with sources at zelvra.tech</p>
+    <footer class="site-footer">
+      <div>
+        <a class="brand footer-brand" href="./index.html" aria-label="Zelvra home">
+          <img class="brand-mark" src="./assets/zelvra-mark.svg" alt="" aria-hidden="true">
+          <span>Zelvra</span>
+        </a>
+        <p>Turning financial filings into sharp research briefs.</p>
       </div>
-    </section>
-
-    <section class="brief-section">
-      <h2>Newsletter Section (Drop-In Ready)</h2>
-      <div class="newsletter-block">
-        <p><strong>Netflix Q2 2026:</strong> Revenue came in at $12.56 billion, up 13% year over year but marginally below the $12.59 billion Wall Street consensus. EPS of $0.80 edged past estimates. Shares fell 9% after hours, hitting a 52-week low — the market's reaction was driven less by the Q2 numbers and more by guidance: Netflix is projecting 12% revenue growth in Q3, continuing a deceleration that began in Q1 (16% growth) and extended through Q2 (13%). On the positive side, operating margin is improving significantly year over year — Q3 guidance implies a 500 basis point improvement vs. Q3 2025 — and the ad business is scaling, with 250 million monthly active viewers on the ad-supported tier and approximately $3 billion in ad revenue expected for the full year, roughly double 2025 levels. Netflix also stopped reporting paid net subscriber additions this quarter; the company now has 325 million global members. All figures sourced to Netflix's Q2 2026 shareholder letter and press release (ir.netflix.net). Research content only — not investment advice.</p>
+      <div class="footer-meta">
+        <a href="./index.html#contact">hello@zelvra.tech</a>
+        <p>Research content only. Not financial advice.</p>
       </div>
-    </section>
+    </footer>
 
-    <section class="brief-section">
-      <h2>Sources</h2>
-      <ol class="sources-list">
-        <li><strong>Primary:</strong> Netflix Q2 2026 Earnings Press Release / Shareholder Letter — ir.netflix.net (SEC Form 8-K filed July 16, 2026). Supports: all revenue, EPS, net income, operating income, operating margin, Q3 guidance, and full-year guidance figures.</li>
-        <li><strong>Primary:</strong> Netflix Q2 2026 Earnings Call Transcript — Investing.com / Motley Fool (July 16, 2026). Supports: management characterization of ad business, content amortization trajectory, and guidance commentary.</li>
-        <li><strong>Secondary:</strong> Netflix May 2026 Upfront Presentation. Supports: 250 million monthly active viewer figure for the ad-supported tier.</li>
-        <li><strong>Secondary (consensus only):</strong> CNBC Q2 2026 Netflix earnings coverage (July 16, 2026) — cnbc.com. Supports: $12.59B revenue consensus and $0.79 EPS consensus used for beat/miss calculations.</li>
-        <li><strong>Secondary (market reaction):</strong> Hollywood Reporter / Deadline / Variety Q2 2026 Netflix earnings coverage (July 16, 2026). Supports: stock reaction (-9% afterhours, 52-week low characterization).</li>
-      </ol>
-      <p class="disclaimer-note">All figures above are sourced to primary Netflix filings or management statements. Secondary sources used only for consensus estimates and market reaction context. Research content only — not investment advice.</p>
-    </section>
-
-    <section class="brief-cta">
-      <h2>Get briefs like this before your next publish</h2>
-      <p>Every number sourced. Every figure tied to the filing. Delivered overnight from IST — in your inbox before your morning send.</p>
-      <div class="offer-actions">
-        <a href="mailto:hello@zelvra.tech?subject=Week Pass" class="cta-button">Get the Week Pass — $99</a>
-      </div>
-      <p class="cta-note">Covers NFLX (done), GOOGL + TSLA Jul 22, MSFT + META Jul 29, AMZN + AAPL Jul 30. One email, no subscription lock-in.</p>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <p>© 2026 Zelvra · <a href="mailto:hello@zelvra.tech">hello@zelvra.tech</a> · Research content only, not investment advice</p>
-  </footer>
-</body>
+    <script src="./script.js" defer></script>
+  </body>
 </html>
