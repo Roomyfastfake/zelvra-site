@@ -28,6 +28,7 @@ finance creators.
 | `assets/og-image.py` | Pillow script that regenerates `og-image.png`. |
 | `ops/` | Internal content-ops templates (not part of the deployed pages). |
 | `DEPLOYMENT_CHECKLIST.md` / `LAUNCH_CHECKLIST.md` | Step-by-step launch guides. |
+| `HOSTING.md` | Cloudflare + GitHub Pages HTTPS setup, the Sep 2026 cert incident, and the durable-fix runbook. |
 
 ## Edit the copy
 
@@ -72,13 +73,23 @@ No build step, npm install, or backend is required.
 
 ## Cloudflare DNS records
 
-**Already configured and working (July 2026):** zelvra.tech serves the
-`Roomyfastfake/zelvra-site` GitHub Pages repo through the Cloudflare proxy with valid
-HTTPS. **Do not change DNS.** Deploys are just `git push origin main` (or
-`.\deploy.ps1 "message"`).
+zelvra.tech serves the `Roomyfastfake/zelvra-site` GitHub Pages repo. Deploys are
+`git push origin main` (or `.\deploy.ps1 "message"`). Full details and the runbook:
+[`HOSTING.md`](HOSTING.md).
 
-The reference records below are only for a from-scratch rebuild. If ever redoing
-this, grey-cloud (DNS only) lets GitHub issue its own TLS certificate:
+**Mode as of 2026-10-14 (stopgap):** website records proxied (orange cloud), Cloudflare
+SSL/TLS mode **Full**, not Full (strict).
+
+- **Why strict fails:** GitHub renews its Let's Encrypt cert only while the domain resolves
+  to GitHub IPs. Proxied, it resolves to Cloudflare, so the cert never renews. It expired
+  2026-09-18 and strict returned 526 on every URL until 2026-10-14.
+- **Trade-off of Full:** the Cloudflare-to-GitHub leg is encrypted but unauthenticated
+  (Cloudflare accepts the expired origin cert). Visitors still get a valid Cloudflare cert.
+- **Durable fix:** grey-cloud (DNS only) the website records below, force GitHub to reissue
+  the cert, and keep them grey. Steps in [`HOSTING.md`](HOSTING.md). Turning the orange
+  cloud back on breaks the next renewal.
+
+Website records (all must be grey for the durable fix):
 
 **Apex domain `zelvra.tech` → GitHub Pages:**
 
@@ -103,9 +114,9 @@ CNAME   www   roomyfastfake.github.io
 This domain sends/receives mail through **Zoho**. The records above only add the **website**.
 Leave every existing Zoho record exactly as it is:
 
-- **MX** records (`mx.zoho.com`, `mx2.zoho.com`, `mx3.zoho.com`).
-- **SPF** — the `TXT` record on `@` containing `v=spf1 include:zoho.com ...`.
-- **DKIM** — the `TXT` record on a selector such as `zmail._domainkey`.
+- **MX** records (`mx.zoho.in`, `mx2.zoho.in`, `mx3.zoho.in`).
+- **SPF**: the `TXT` record on `@` containing `v=spf1 include:zoho.in ...`.
+- **DKIM**: the `TXT` record on a selector such as `zmail._domainkey`.
 - Any Zoho domain-verification `TXT` record.
 
 The website and email records do not overlap, so adding A / AAAA / CNAME entries will not
