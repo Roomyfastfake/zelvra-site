@@ -2186,3 +2186,22 @@ h3 {
 
 }
 
+
+/* Homepage hero: dated "next print" offer line. Update or remove after each print. */
+.next-print {
+  margin: 10px 0 0;
+  padding-left: 22px;
+  color: var(--muted-strong);
+  font-size: 0.95rem;
+}
+
+.next-print a {
+  color: var(--accent-strong);
+  font-weight: 650;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.next-print a:hover {
+  color: var(--text);
+}
