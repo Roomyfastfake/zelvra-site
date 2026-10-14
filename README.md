@@ -77,19 +77,16 @@ zelvra.tech serves the `Roomyfastfake/zelvra-site` GitHub Pages repo. Deploys ar
 `git push origin main` (or `.\deploy.ps1 "message"`). Full details and the runbook:
 [`HOSTING.md`](HOSTING.md).
 
-**Current mode (stopgap, applied 2026-10-14):** website records proxied (orange cloud), Cloudflare
-SSL/TLS mode **Full**, not Full (strict).
+**Current mode (durable fix, applied 2026-10-14):** website records are **DNS only** (grey
+cloud). Cloudflare is DNS only for the site; GitHub Pages issues and auto-renews the
+Let's Encrypt cert and **Enforce HTTPS** is on.
 
-- **Why strict fails:** GitHub renews its Let's Encrypt cert only while the domain resolves
-  to GitHub IPs. Proxied, it resolves to Cloudflare, so the cert never renews. It expired
-  2026-09-18 and strict returned 526 on every URL until Full was applied on 2026-10-14.
-- **Trade-off of Full:** the Cloudflare-to-GitHub leg is encrypted but unauthenticated
-  (Cloudflare accepts the expired origin cert). Visitors still get a valid Cloudflare cert.
-- **Durable fix:** grey-cloud (DNS only) the website records below, force GitHub to reissue
-  the cert, and keep them grey. Steps in [`HOSTING.md`](HOSTING.md). Turning the orange
-  cloud back on breaks the next renewal.
+- **Keep them grey.** GitHub renews its cert only while the domain resolves to GitHub IPs.
+  Proxied (orange), it resolves to Cloudflare and the cert never renews. That is what
+  expired it on 2026-09-18 and caused the 526 outage. Details in [`HOSTING.md`](HOSTING.md).
+- Cloudflare SSL mode, Always Use HTTPS, HSTS, and page rules no longer apply to the site.
 
-Website records (all must be grey for the durable fix):
+Website records (all DNS only):
 
 **Apex domain `zelvra.tech` → GitHub Pages:**
 
@@ -106,8 +103,14 @@ A   @   185.199.111.153
 CNAME   www   roomyfastfake.github.io
 ```
 
-(Optional but recommended for full IPv6 support, add the four GitHub Pages AAAA records:
-`2606:50c0:8000::153`, `2606:50c0:8001::153`, `2606:50c0:8002::153`, `2606:50c0:8003::153`.)
+**Apex IPv6 (added 2026-10-14):**
+
+```
+AAAA   @   2606:50c0:8000::153
+AAAA   @   2606:50c0:8001::153
+AAAA   @   2606:50c0:8002::153
+AAAA   @   2606:50c0:8003::153
+```
 
 ## ⚠️ Do not delete your Zoho email records
 

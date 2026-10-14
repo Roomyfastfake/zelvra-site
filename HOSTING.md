@@ -13,27 +13,38 @@ Public file (served by GitHub Pages). No secrets here.
 
 GitHub's Let's Encrypt certificate for `zelvra.tech` expired on 2026-09-18 and was never
 renewed. Cloudflare was set to **Full (strict)**, so it rejected the expired origin cert and
-every URL returned **526**. Resolved 2026-10-14 by switching the SSL mode to Full (below);
-the site returned 200 within a minute.
+every URL returned **526**. Stopgap on 2026-10-14: SSL mode switched to Full, and the site
+returned 200 within a minute. Durable fix the same day: website records grey-clouded and
+GitHub reissued its cert (see "Current mode").
 
 Root cause: GitHub renews its certificate only when the domain resolves to GitHub's IPs.
 With the records proxied (orange cloud), `zelvra.tech` resolves to Cloudflare IPs, so
 GitHub cannot renew. The first cert was issued before the proxy was turned on, so the
 problem only appeared at the first renewal, about 90 days later.
 
-## Current mode (stopgap, applied 2026-10-14)
+## Current mode (durable fix, applied 2026-10-14)
 
-- Records: proxied (orange cloud).
-- Cloudflare SSL/TLS mode: **Full** (not strict).
-- Why Full avoids the 526: it encrypts the Cloudflare-to-GitHub leg but does not validate the
-  origin cert, so the expired GitHub cert is accepted.
-- Why strict fails: strict requires a valid origin cert. GitHub's cert can never renew
-  while proxied, and GitHub Pages cannot install a Cloudflare Origin CA cert.
-- Trade-off: the Cloudflare-to-GitHub leg is encrypted but **unauthenticated**.
-  Visitors see a valid Cloudflare cert. Cloudflare cannot verify it is talking to GitHub.
-  That is acceptable for a static marketing site, but it's not the clean setup.
+- Website records (apex A, apex AAAA, `www` CNAME): **DNS only** (grey cloud). Cloudflare
+  serves DNS only for the site. Visitors connect straight to GitHub Pages.
+- Cert: GitHub-managed Let's Encrypt, SAN `zelvra.tech` + `www.zelvra.tech`. Issued
+  2026-10-14, `notAfter` 2027-01-12. GitHub auto-renews it while the records stay grey.
+- **Enforce HTTPS: on.** `http://` and `www` both 301 to `https://zelvra.tech/` from GitHub.
+- Cloudflare SSL/TLS mode is still Full but has no effect on the site while the records are
+  grey. It only matters if you roll back.
+- The AAAA records did not exist before 2026-10-14. They were added during the fix.
 
-## Durable fix: grey-cloud the website records
+## Previous stopgap (2026-10-14, superseded)
+
+Records proxied with SSL mode **Full** (not strict). Full encrypts the Cloudflare-to-GitHub
+leg without validating the origin cert, so the expired GitHub cert was accepted. Strict
+fails because GitHub's cert cannot renew while proxied, and GitHub Pages cannot install a
+Cloudflare Origin CA cert. Trade-off: that leg is encrypted but **unauthenticated**. This is
+also the rollback state below.
+
+## Durable fix: grey-cloud the website records (done 2026-10-14)
+
+Kept as a runbook in case the records are ever re-proxied. On 2026-10-14 the cert issued
+within seconds of the Remove and re-add in step 4.
 
 This removes Cloudflare from the web path for the site so GitHub can issue and auto-renew
 its own cert. Allow 1 to 2 hours. Visitors may see a certificate warning for up to about
@@ -101,8 +112,9 @@ an hour (between step 2 and step 6), so do it at a quiet time.
    Cloudflare's SSL mode, Always Use HTTPS, HSTS, and page/redirect rules no longer apply
    to the site. GitHub handles HTTPS.
 
-**Rollback:** if no cert appears within 24 hours, set the website records back to
-proxied with SSL mode **Full**. That restores the stopgap above.
+**Rollback:** if no cert appears within 24 hours, set the A and `www` CNAME records back
+to proxied with SSL mode **Full**, and proxy (or delete) the four AAAA records so IPv6
+doesn't bypass Cloudflare. That restores the stopgap above.
 
 ## Ongoing check
 
@@ -118,3 +130,4 @@ Live values as of 2026-10-14. Leave them exactly as they are:
 - `TXT @` SPF: `v=spf1 include:zoho.in include:spf.efwd.registrar-servers.com ~all`
 - `TXT @` `zoho-verification=...`
 - `TXT zmail._domainkey` (DKIM)
+- `TXT _dmarc` `v=DMARC1; p=none; rua=mailto:...@dmarc-reports.cloudflare.net`
