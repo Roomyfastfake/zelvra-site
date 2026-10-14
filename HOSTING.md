@@ -9,18 +9,18 @@ Public file (served by GitHub Pages). No secrets here.
 - DNS: Cloudflare (`laylah.ns.cloudflare.com`). Website records are the apex A/AAAA
   records and the `www` CNAME. Mail (Zoho) lives on the same zone; see "Do not touch" below.
 
-## Incident: 2026-09-18 to 2026-10-14
+## Incident: cert expired 2026-09-18
 
 GitHub's Let's Encrypt certificate for `zelvra.tech` expired on 2026-09-18 and was never
 renewed. Cloudflare was set to **Full (strict)**, so it rejected the expired origin cert and
-every URL returned **526**.
+every URL returned **526** (still 526 when this was written on 2026-10-14).
 
 Root cause: GitHub renews its certificate only when the domain resolves to GitHub's IPs.
 With the records proxied (orange cloud), `zelvra.tech` resolves to Cloudflare IPs, so
 GitHub cannot renew. The first cert was issued before the proxy was turned on, so the
 problem only appeared at the first renewal, about 90 days later.
 
-## Current mode (stopgap, set 2026-10-14)
+## Required stopgap mode (requested 2026-10-14)
 
 - Records: proxied (orange cloud).
 - Cloudflare SSL/TLS mode: **Full** (not strict).
@@ -105,9 +105,9 @@ proxied with SSL mode **Full**. That restores the stopgap above.
 
 ## Ongoing check
 
-GitHub renews about 30 days before expiry. Run the step 6 command occasionally. `notAfter`
-should keep moving forward. If it stops moving and the date is under 30 days away, check
-that the records are still grey.
+GitHub renews well before expiry. Run the step 6 command occasionally. `notAfter` should
+keep moving forward. If it is within about 2 weeks and has not moved, check that the
+records are still grey.
 
 ## Do not touch: Zoho mail records
 

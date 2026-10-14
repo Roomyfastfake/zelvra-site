@@ -77,12 +77,12 @@ zelvra.tech serves the `Roomyfastfake/zelvra-site` GitHub Pages repo. Deploys ar
 `git push origin main` (or `.\deploy.ps1 "message"`). Full details and the runbook:
 [`HOSTING.md`](HOSTING.md).
 
-**Mode as of 2026-10-14 (stopgap):** website records proxied (orange cloud), Cloudflare
+**Required stopgap mode (requested 2026-10-14):** website records proxied (orange cloud), Cloudflare
 SSL/TLS mode **Full**, not Full (strict).
 
 - **Why strict fails:** GitHub renews its Let's Encrypt cert only while the domain resolves
   to GitHub IPs. Proxied, it resolves to Cloudflare, so the cert never renews. It expired
-  2026-09-18 and strict returned 526 on every URL until 2026-10-14.
+  2026-09-18 and strict has returned 526 on every URL since then.
 - **Trade-off of Full:** the Cloudflare-to-GitHub leg is encrypted but unauthenticated
   (Cloudflare accepts the expired origin cert). Visitors still get a valid Cloudflare cert.
 - **Durable fix:** grey-cloud (DNS only) the website records below, force GitHub to reissue
