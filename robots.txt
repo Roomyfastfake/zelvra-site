@@ -1,4 +1,10 @@
 User-agent: *
 Allow: /
+# Repo docs and internal working files are served by GitHub Pages but are not site content.
+Disallow: /briefs/
+Disallow: /scripts/
+Disallow: /assets/*.py$
+Disallow: /*.md$
+Disallow: /deploy.ps1
 
 Sitemap: https://zelvra.tech/sitemap.xml
