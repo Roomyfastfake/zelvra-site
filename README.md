@@ -12,11 +12,12 @@ finance creators.
 
 | File | Purpose |
 | --- | --- |
-| `index.html` | Homepage: nav, hero, problem, what we deliver, process, sample preview, contact CTA, footer. |
+| `index.html` | Homepage: nav, hero, problem, what we deliver, process, sample links, about, pricing, contact CTA, footer. |
+| `sample-*.html` | Real, source-tagged sample briefs (MU, NKE, NFLX, NVDA). |
 | `sample.html` | Full illustrative "sample brief" structure page (no real company data). |
-| `404.html` | Styled not-found page (served by GitHub Pages for unknown paths). |
+| `404.html` | Styled not-found page (served by GitHub Pages for unknown paths; uses root-absolute paths so it renders at any depth). |
 | `styles.css` | Responsive visual design (dark financial theme). |
-| `script.js` | Vanilla JS: mobile nav, interactive sample tabs, copy-email. |
+| `script.js` | Vanilla JS: HTTPS redirect, mobile nav, copy-email. |
 | `CNAME` | Custom domain for GitHub Pages (`zelvra.tech`). |
 | `site.webmanifest` | Web app manifest (name, theme color, icon). |
 | `robots.txt` / `sitemap.xml` | Crawler directives + URL list. |
@@ -33,9 +34,10 @@ finance creators.
 ## Edit the copy
 
 - Homepage copy (hero, problem, solution, process, contact) lives directly in `index.html`.
-- The interactive sample modes (Earnings call / 10-K / Transcript) are defined in the
-  `samples` object in `script.js`. The default "earnings" mode is also written into
-  `index.html` so the content is visible without JavaScript and crawlable.
+- Each page links `styles.css?v=YYYYMMDD` and `script.js?v=YYYYMMDD`. After editing either
+  file, bump that date in every `.html` file so returning visitors don't get a stale cached copy.
+- The mobile menu has its own CTA (`.nav-cta` inside `<nav>`); keep it in sync with the
+  page's `.header-cta` link.
 - The full sample-brief structure is in `sample.html`.
 - Contact address is `hello@zelvra.tech`. To change it, update the `EMAIL` constant in
   `script.js`, the `mailto:` links and `#contact-email` value in the HTML, and the JSON-LD block.

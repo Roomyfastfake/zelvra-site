@@ -10,7 +10,7 @@ save, and re-deploy (commit + push). No build step.
 | Headline / hero text | `index.html` — the `<h1 id="hero-title">` and `.hero-subhead` |
 | Nav links | `index.html` — the `<nav class="site-nav">` block |
 | Problem / What we deliver / Process text | `index.html` — the matching `<section>` |
-| Homepage sample preview (tabs) | `script.js` — the `samples` object |
+| Homepage sample links | `index.html` — the `#sample` section list |
 | Full sample brief page | `sample.html` |
 | Contact email everywhere | see "Change the email" below |
 | Colors, spacing, fonts | `styles.css` (CSS variables are in `:root` at the top) |
@@ -37,9 +37,8 @@ the `<nav class="site-nav">` pointing to `#your-new-id`.
 
 ## Edit the sample brief text
 
-- Homepage interactive preview: edit the `samples` object in `script.js` (each of
-  `earnings`, `filing`, `transcript` has `hook`, `metrics`, `upside`, `risk`, `angle`).
-- Full page: edit the sections inside `sample.html`. Keep the "Illustrative structure only.
+- Real samples: each `sample-*.html` page is a standalone brief.
+- Illustrative page: edit the sections inside `sample.html`. Keep the "Illustrative structure only.
   Not a company recommendation." line and do not insert real company figures.
 
 ## Re-deploy after editing
@@ -51,6 +50,9 @@ git push
 ```
 
 GitHub Pages redeploys automatically within a minute or so.
+
+If you edited `styles.css` or `script.js`, first bump the `?v=YYYYMMDD` on their links in
+every `.html` file, otherwise returning visitors may see the old cached version.
 
 ## Rules to keep
 

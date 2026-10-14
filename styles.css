@@ -198,6 +198,11 @@ input:focus-visible,
   display: none;
 }
 
+/* Mobile-menu copy of the header CTA; the header CTA covers desktop. */
+.nav-cta {
+  display: none;
+}
+
 .section-shell {
   width: min(100% - 40px, var(--max-width));
   margin: 0 auto;
@@ -1054,7 +1059,7 @@ h3 {
     display: grid;
     width: 100%;
     padding: 16px;
-    background: rgba(5, 7, 13, 0.96);
+    background: var(--bg-soft);
     border: 1px solid var(--line);
     border-radius: var(--radius);
     box-shadow: var(--shadow);
@@ -1062,6 +1067,26 @@ h3 {
 
   .site-header.nav-open .site-nav a {
     padding: 12px;
+  }
+
+  .site-header.nav-open .site-nav .nav-cta {
+    display: flex;
+    justify-content: center;
+    margin-top: 8px;
+    color: #04101d;
+    font-weight: 720;
+    background: linear-gradient(135deg, #c4ebff, #55b8ff);
+    border-radius: var(--radius);
+  }
+
+  .site-header.nav-open .site-nav .nav-cta:hover {
+    color: #04101d;
+  }
+
+  /* Pages without a menu (404) keep the header CTA visible. */
+  .site-header:not(:has(.nav-toggle)) .header-cta {
+    display: inline-flex;
+    justify-self: end;
   }
 
   .hero,
