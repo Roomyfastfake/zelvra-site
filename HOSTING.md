@@ -9,18 +9,19 @@ Public file (served by GitHub Pages). No secrets here.
 - DNS: Cloudflare (`laylah.ns.cloudflare.com`). Website records are the apex A/AAAA
   records and the `www` CNAME. Mail (Zoho) lives on the same zone; see "Do not touch" below.
 
-## Incident: cert expired 2026-09-18
+## Incident: 2026-09-18 to 2026-10-14
 
 GitHub's Let's Encrypt certificate for `zelvra.tech` expired on 2026-09-18 and was never
 renewed. Cloudflare was set to **Full (strict)**, so it rejected the expired origin cert and
-every URL returned **526** (still 526 when this was written on 2026-10-14).
+every URL returned **526**. Resolved 2026-10-14 by switching the SSL mode to Full (below);
+the site returned 200 within a minute.
 
 Root cause: GitHub renews its certificate only when the domain resolves to GitHub's IPs.
 With the records proxied (orange cloud), `zelvra.tech` resolves to Cloudflare IPs, so
 GitHub cannot renew. The first cert was issued before the proxy was turned on, so the
 problem only appeared at the first renewal, about 90 days later.
 
-## Required stopgap mode (requested 2026-10-14)
+## Current mode (stopgap, applied 2026-10-14)
 
 - Records: proxied (orange cloud).
 - Cloudflare SSL/TLS mode: **Full** (not strict).
