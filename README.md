@@ -27,6 +27,7 @@ finance creators.
 | `assets/zelvra-mark.svg` | Logo mark used in the header and footer. |
 | `assets/og-image.png` | 1200x630 social share image (Open Graph / Twitter). |
 | `assets/og-image.py` | Pillow script that regenerates `og-image.png`. |
+| `assets/og-briefs.py` | Pillow script for per-brief share cards (`og-<ticker>-<quarter>.png`); add an entry per new brief, using only numbers already on that page. |
 | `ops/` | Internal content-ops templates (not part of the deployed pages). |
 | `DEPLOYMENT_CHECKLIST.md` / `LAUNCH_CHECKLIST.md` | Step-by-step launch guides. |
 | `HOSTING.md` | Cloudflare + GitHub Pages HTTPS setup, the Sep 2026 cert incident, and the durable-fix runbook. |
