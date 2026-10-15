@@ -37,11 +37,11 @@ BRIEFS = [
     {
         "out": "og-nflx-q2-2026.png",
         "eyebrow": "SAMPLE BRIEF  ·  NETFLIX  ·  Q2 2026",
-        "headline": "The market sold the slowdown and skipped the margin guide.",
+        "headline": "Growth slowed, and the Q3 margin jump is mostly a one-off.",
         "chips": [
             ("$12.56B", "revenue, +13.4% YoY"),
             ("$0.80", "diluted EPS, beat"),
-            ("33.2%", "Q3 operating margin guide"),
+            ("31.5%", "FY26 operating margin guide"),
         ],
     },
 ]
